@@ -15,10 +15,18 @@ const credentials = [
 
 <BaseLayout title="About" description="About Titan Arbor Solutions and owner Diego Zunun — five years in tree care, locally owned, working toward ISA Certified Arborist credentials.">
 
-  <section class="bg-arbor-800 text-cream py-16 sm:py-20">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+  <section class="relative text-cream overflow-hidden">
+    <img
+      src="/images/about.jpg"
+      alt=""
+      class="absolute inset-0 w-full h-full object-cover"
+      loading="eager"
+    />
+    <div class="absolute inset-0 bg-gradient-to-br from-arbor-900/90 via-arbor-800/80 to-arbor-900/90" aria-hidden="true"></div>
+
+    <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
       <p class="text-sm uppercase tracking-widest text-arbor-100 mb-3">About</p>
-      <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight">
+      <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight drop-shadow-lg">
         Built around one principle: do it right.
       </h1>
       <p class="mt-6 text-lg sm:text-xl text-arbor-100 max-w-2xl">

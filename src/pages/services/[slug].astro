@@ -23,8 +23,16 @@ const others = allServices
 ---
 
 <BaseLayout title={service.data.title} description={service.data.summary}>
-  <section class="bg-arbor-800 text-cream py-16 sm:py-20">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+  <section class="relative text-cream overflow-hidden">
+    <img
+      src={`/images/services/${service.id}.jpg`}
+      alt=""
+      class="absolute inset-0 w-full h-full object-cover"
+      loading="eager"
+    />
+    <div class="absolute inset-0 bg-gradient-to-br from-arbor-900/90 via-arbor-800/80 to-arbor-900/90" aria-hidden="true"></div>
+
+    <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
       <a href="/services/" class="inline-flex items-center gap-1 text-arbor-100 hover:text-cream text-sm mb-6">
         <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <polyline points="15 18 9 12 15 6"/>
@@ -32,7 +40,7 @@ const others = allServices
         All services
       </a>
       <div class="flex items-start gap-5">
-        <div class="hidden sm:flex w-16 h-16 rounded-full bg-cream/10 text-cream items-center justify-center shrink-0">
+        <div class="hidden sm:flex w-16 h-16 rounded-full bg-cream/15 backdrop-blur text-cream items-center justify-center shrink-0">
           <ServiceIcon name={service.data.icon} class="w-8 h-8" />
         </div>
         <div>
@@ -41,7 +49,7 @@ const others = allServices
               {service.data.heroEyebrow}
             </p>
           )}
-          <h1 class="text-4xl sm:text-5xl font-bold tracking-tight">{service.data.title}</h1>
+          <h1 class="text-4xl sm:text-5xl font-bold tracking-tight drop-shadow">{service.data.title}</h1>
           <p class="mt-4 text-lg text-arbor-100 max-w-2xl">{service.data.summary}</p>
         </div>
       </div>

@@ -1,8 +1,9 @@
 ---
 import "../styles/global.css";
-import { site } from "../lib/site";
+import { site, services, serviceAreas, telHref } from "../lib/site";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import MobileCallBar from "../components/MobileCallBar.astro";
 
 interface Props {
   title?: string;
@@ -21,6 +22,66 @@ const {
 const pageTitle = title ? `${title} · ${site.shortName}` : `${site.name} — ${site.tagline}`;
 const canonical = new URL(pathname, site.url).toString();
 const ogImage = new URL("/logo.png", site.url).toString();
+
+const telE164 = (n: string) => `+1${n.replace(/\D/g, "")}`;
+
+const jsonLd = site.published
+  ? {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "additionalType": "https://schema.org/HomeAndConstructionBusiness",
+      "@id": `${site.url}/#business`,
+      name: site.name,
+      image: ogImage,
+      logo: ogImage,
+      url: site.url,
+      telephone: telE164(site.phonePrimary),
+      email: site.email,
+      priceRange: "$$",
+      address: {
+        "@type": "PostalAddress",
+        addressRegion: site.legal.state,
+        addressCountry: "US",
+      },
+      areaServed: serviceAreas.map((a) => ({ "@type": "City", name: a.name })),
+      openingHoursSpecification: [
+        {
+          "@type": "OpeningHoursSpecification",
+          dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+          opens: "07:00",
+          closes: "19:00",
+        },
+      ],
+      contactPoint: [
+        {
+          "@type": "ContactPoint",
+          telephone: telE164(site.phonePrimary),
+          contactType: "customer service",
+          areaServed: "US-GA",
+          availableLanguage: ["English", "Spanish"],
+        },
+        {
+          "@type": "ContactPoint",
+          telephone: telE164(site.phoneBackup),
+          contactType: "customer service",
+          areaServed: "US-GA",
+        },
+      ],
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "Tree Care Services",
+        itemListElement: services.map((s) => ({
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: s.title,
+            description: s.summary,
+            url: `${site.url}/services/${s.slug}/`,
+          },
+        })),
+      },
+    }
+  : null;
 ---
 
 <!DOCTYPE html>
@@ -48,8 +109,12 @@ const ogImage = new URL("/logo.png", site.url).toString();
     <meta name="twitter:image" content={ogImage} />
 
     <meta name="theme-color" content="#1f4d2b" />
+
+    {jsonLd && (
+      <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    )}
   </head>
-  <body class="bg-cream text-arbor-900 antialiased min-h-screen flex flex-col">
+  <body class="bg-cream text-arbor-900 antialiased min-h-screen flex flex-col pb-14 lg:pb-0">
     <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:px-4 focus:py-2 focus:bg-arbor-800 focus:text-cream focus:rounded">
       Skip to main content
     </a>
@@ -58,5 +123,6 @@ const ogImage = new URL("/logo.png", site.url).toString();
       <slot />
     </main>
     <Footer />
+    <MobileCallBar />
   </body>
 </html>

@@ -45,17 +45,33 @@ const services = (await getCollection("services")).sort(
             Call {site.phonePrimary}
           </a>
           <a
-            href="/services/"
+            href="/#services"
             class="inline-flex items-center justify-center gap-2 px-7 py-4 border-2 border-cream/40 text-cream rounded-full font-semibold hover:bg-cream/10 backdrop-blur transition"
           >
             See our services
           </a>
         </div>
+
+        <ul class="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-cream/90 text-sm font-medium">
+          {[
+            "Licensed",
+            "Insured",
+            "24-Hour Emergency",
+            "Free Quotes",
+          ].map((badge) => (
+            <li class="inline-flex items-center gap-2">
+              <svg class="w-4 h-4 text-cream shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              {badge}
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   </section>
 
-  <section class="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 bg-cream">
+  <section id="services" class="scroll-mt-20 py-16 sm:py-24 px-4 sm:px-6 lg:px-8 bg-cream">
     <div class="max-w-7xl mx-auto">
       <div class="text-center max-w-3xl mx-auto mb-12">
         <p class="text-sm uppercase tracking-widest text-arbor-800 mb-3 font-semibold">What we do</p>
@@ -125,7 +141,7 @@ const services = (await getCollection("services")).sort(
               <svg class="w-4 h-4 text-cream/80 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <polyline points="20 6 9 17 4 12"/>
               </svg>
-              {area}
+              {area.name}
             </li>
           ))}
         </ul>

@@ -100,19 +100,25 @@ export const services: Service[] = [
   },
 ];
 
-export const serviceAreas: string[] = [
-  "Atlanta",
-  "Decatur",
-  "Stone Mountain",
-  "Sandy Springs",
-  "Roswell",
-  "Marietta",
-  "Dunwoody",
-  "Brookhaven",
-  "Tucker",
-  "Avondale Estates",
-  "Smyrna",
-  "Chamblee",
+export type ServiceArea = {
+  name: string;
+  slug: string;
+  blurb: string;
+};
+
+export const serviceAreas: ServiceArea[] = [
+  { name: "Atlanta", slug: "atlanta", blurb: "Inside the perimeter, neighborhood by neighborhood." },
+  { name: "Decatur", slug: "decatur", blurb: "Old-growth oaks and historic streets." },
+  { name: "Stone Mountain", slug: "stone-mountain", blurb: "From the lake to the park's edge." },
+  { name: "Sandy Springs", slug: "sandy-springs", blurb: "Mature canopies along the Chattahoochee." },
+  { name: "Roswell", slug: "roswell", blurb: "Historic district to the river." },
+  { name: "Marietta", slug: "marietta", blurb: "From the square to East Cobb." },
+  { name: "Dunwoody", slug: "dunwoody", blurb: "Big oaks, big yards." },
+  { name: "Brookhaven", slug: "brookhaven", blurb: "Towering hardwoods, classic intown." },
+  { name: "Tucker", slug: "tucker", blurb: "Shaded residential streets." },
+  { name: "Avondale Estates", slug: "avondale-estates", blurb: "Tudor homes under tall oaks." },
+  { name: "Smyrna", slug: "smyrna", blurb: "From Vinings to the Battery." },
+  { name: "Chamblee", slug: "chamblee", blurb: "Buford Highway and beyond." },
 ];
 
 export function telHref(num: string): string {

@@ -1,0 +1,43 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { site, telHref, mailHref } from "../lib/site";
+---
+
+<BaseLayout title="Page not found" description="The page you're looking for doesn't exist.">
+  <section class="bg-arbor-800 text-cream py-20 sm:py-28">
+    <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <p class="text-sm uppercase tracking-widest text-arbor-100 mb-3">404</p>
+      <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight">
+        Couldn't find that page.
+      </h1>
+      <p class="mt-6 text-lg text-arbor-100">
+        The link might be old or mistyped. Try one of these instead:
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mx-auto grid sm:grid-cols-3 gap-4">
+      <a href="/" class="group bg-white border border-arbor-800/15 rounded-2xl p-6 hover:border-arbor-800/40 hover:shadow-lg transition shadow-sm text-center">
+        <p class="font-semibold text-arbor-900 mb-1">Home</p>
+        <p class="text-sm text-arbor-900/70">Back to the start</p>
+      </a>
+      <a href="/#services" class="group bg-white border border-arbor-800/15 rounded-2xl p-6 hover:border-arbor-800/40 hover:shadow-lg transition shadow-sm text-center">
+        <p class="font-semibold text-arbor-900 mb-1">Services</p>
+        <p class="text-sm text-arbor-900/70">What we do</p>
+      </a>
+      <a href="/contact/" class="group bg-white border border-arbor-800/15 rounded-2xl p-6 hover:border-arbor-800/40 hover:shadow-lg transition shadow-sm text-center">
+        <p class="font-semibold text-arbor-900 mb-1">Contact</p>
+        <p class="text-sm text-arbor-900/70">Phone, email, hours</p>
+      </a>
+    </div>
+
+    <div class="max-w-2xl mx-auto mt-10 text-center">
+      <p class="text-arbor-900/70">
+        Or just call Diego directly at
+        <a href={telHref(site.phonePrimary)} class="text-arbor-800 font-bold hover:underline underline-offset-4">{site.phonePrimary}</a>
+        — fastest way to a quote.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

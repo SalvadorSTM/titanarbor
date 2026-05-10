@@ -118,10 +118,23 @@ const isActive = (href: string) => {
   const menu = document.getElementById("mobile-menu");
   const openIcon = btn?.querySelector(".menu-open");
   const closeIcon = btn?.querySelector(".menu-close");
+
+  function setMenuOpen(open: boolean) {
+    if (!menu || !btn) return;
+    menu.classList.toggle("hidden", !open);
+    btn.setAttribute("aria-expanded", String(open));
+    openIcon?.classList.toggle("hidden", open);
+    closeIcon?.classList.toggle("hidden", !open);
+  }
+
   btn?.addEventListener("click", () => {
-    const isOpen = menu?.classList.toggle("hidden") === false;
-    btn.setAttribute("aria-expanded", String(isOpen));
-    openIcon?.classList.toggle("hidden", isOpen);
-    closeIcon?.classList.toggle("hidden", !isOpen);
+    setMenuOpen(menu?.classList.contains("hidden") ?? false);
+  });
+
+  // Close the menu when any nav link or button inside it is tapped.
+  // Important for in-page anchor links (e.g. /#services) where the page
+  // doesn't reload, so the menu would otherwise stay open.
+  menu?.addEventListener("click", (e) => {
+    if ((e.target as HTMLElement).closest("a")) setMenuOpen(false);
   });
 </script>

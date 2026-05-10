@@ -1,0 +1,74 @@
+---
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ServiceIcon from "../../components/ServiceIcon.astro";
+import ServiceCard from "../../components/ServiceCard.astro";
+import CTA from "../../components/CTA.astro";
+
+export async function getStaticPaths() {
+  const services = await getCollection("services");
+  return services.map((service) => ({
+    params: { slug: service.id },
+    props: { service, allServices: services },
+  }));
+}
+
+const { service, allServices } = Astro.props;
+const { Content } = await render(service);
+
+const others = allServices
+  .filter((s) => s.id !== service.id)
+  .sort((a, b) => a.data.order - b.data.order)
+  .slice(0, 3);
+---
+
+<BaseLayout title={service.data.title} description={service.data.summary}>
+  <section class="bg-arbor-800 text-cream py-16 sm:py-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <a href="/services/" class="inline-flex items-center gap-1 text-arbor-100 hover:text-cream text-sm mb-6">
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+        All services
+      </a>
+      <div class="flex items-start gap-5">
+        <div class="hidden sm:flex w-16 h-16 rounded-full bg-cream/10 text-cream items-center justify-center shrink-0">
+          <ServiceIcon name={service.data.icon} class="w-8 h-8" />
+        </div>
+        <div>
+          {service.data.heroEyebrow && (
+            <p class="text-sm uppercase tracking-widest text-arbor-100 mb-2">
+              {service.data.heroEyebrow}
+            </p>
+          )}
+          <h1 class="text-4xl sm:text-5xl font-bold tracking-tight">{service.data.title}</h1>
+          <p class="mt-4 text-lg text-arbor-100 max-w-2xl">{service.data.summary}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <article class="py-12 sm:py-16 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mx-auto prose-content">
+      <Content />
+    </div>
+  </article>
+
+  <CTA variant="compact" heading={`Ready to schedule ${service.data.shortTitle.toLowerCase()}?`} />
+
+  <section class="bg-white py-16 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto">
+      <h2 class="text-2xl sm:text-3xl font-bold text-arbor-900 mb-8 text-center">Other services</h2>
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {others.map((s) => (
+          <ServiceCard
+            title={s.data.title}
+            summary={s.data.summary}
+            icon={s.data.icon}
+            href={`/services/${s.id}/`}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

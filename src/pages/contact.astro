@@ -1,0 +1,88 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { site, telHref, mailHref } from "../lib/site";
+---
+
+<BaseLayout
+  title="Contact"
+  description="Contact Titan Arbor Solutions. Call 478-268-8020, email diego@titanarbor.com. 24-hour emergency tree service across metro Atlanta."
+>
+
+  <section class="bg-arbor-800 text-cream py-16 sm:py-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <p class="text-sm uppercase tracking-widest text-arbor-100 mb-3">Contact</p>
+      <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight">
+        Get a quote, or just ask.
+      </h1>
+      <p class="mt-6 text-lg sm:text-xl text-arbor-100 max-w-2xl mx-auto">
+        The fastest way to reach us is the phone. Diego picks up; if he can't, leave a voicemail and you'll hear back the same day.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-5xl mx-auto grid lg:grid-cols-3 gap-6">
+
+      <a href={telHref(site.phonePrimary)} class="group bg-arbor-800 text-cream rounded-2xl p-8 shadow-lg hover:bg-arbor-700 transition flex flex-col">
+        <div class="w-12 h-12 rounded-full bg-cream/15 flex items-center justify-center mb-4">
+          <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z"/>
+          </svg>
+        </div>
+        <p class="text-sm uppercase tracking-widest text-arbor-100 mb-2">Primary line</p>
+        <p class="text-3xl sm:text-4xl font-bold mb-2 group-hover:underline underline-offset-4">{site.phonePrimary}</p>
+        <p class="text-arbor-100/80 text-sm mt-auto">Diego answers. Tap to call.</p>
+      </a>
+
+      <a href={telHref(site.phoneBackup)} class="group bg-white border border-arbor-800/15 rounded-2xl p-8 shadow-sm hover:border-arbor-800/30 hover:shadow-lg transition flex flex-col">
+        <div class="w-12 h-12 rounded-full bg-arbor-800/10 text-arbor-800 flex items-center justify-center mb-4">
+          <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z"/>
+          </svg>
+        </div>
+        <p class="text-sm uppercase tracking-widest text-arbor-800 mb-2 font-semibold">Backup line</p>
+        <p class="text-3xl sm:text-4xl font-bold text-arbor-900 mb-2 group-hover:underline underline-offset-4">{site.phoneBackup}</p>
+        <p class="text-arbor-900/60 text-sm mt-auto">Try this if you can't reach the primary.</p>
+      </a>
+
+      <a href={mailHref(site.email, "Tree care inquiry")} class="group bg-white border border-arbor-800/15 rounded-2xl p-8 shadow-sm hover:border-arbor-800/30 hover:shadow-lg transition flex flex-col">
+        <div class="w-12 h-12 rounded-full bg-arbor-800/10 text-arbor-800 flex items-center justify-center mb-4">
+          <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+          </svg>
+        </div>
+        <p class="text-sm uppercase tracking-widest text-arbor-800 mb-2 font-semibold">Email</p>
+        <p class="text-xl sm:text-2xl font-bold text-arbor-900 mb-2 break-all group-hover:underline underline-offset-4">{site.email}</p>
+        <p class="text-arbor-900/60 text-sm mt-auto">Best for photos, multi-tree quotes, non-urgent stuff.</p>
+      </a>
+    </div>
+  </section>
+
+  <section class="bg-white py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mx-auto grid sm:grid-cols-2 gap-8 text-center sm:text-left">
+      <div>
+        <p class="text-sm uppercase tracking-widest text-arbor-800 mb-2 font-semibold">Hours</p>
+        <p class="text-arbor-900 text-lg leading-relaxed">
+          Monday – Saturday<br/>
+          7:00 AM – 7:00 PM
+        </p>
+        <p class="text-arbor-800 font-semibold mt-2">24-hour emergency line for storm damage.</p>
+      </div>
+      <div>
+        <p class="text-sm uppercase tracking-widest text-arbor-800 mb-2 font-semibold">Service area</p>
+        <p class="text-arbor-900 text-lg leading-relaxed">
+          Atlanta and the surrounding metro.<br/>
+          Based in Georgia.
+        </p>
+        <a href="/service-areas/" class="inline-flex items-center gap-1 mt-2 text-arbor-800 font-semibold hover:gap-2 transition-all">
+          See full list
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="5" y1="12" x2="19" y2="12"/>
+            <polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

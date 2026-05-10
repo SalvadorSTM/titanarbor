@@ -1,0 +1,78 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import CTA from "../components/CTA.astro";
+import { site } from "../lib/site";
+
+const credentials = [
+  { title: "Georgia LLC", body: "Registered limited liability company in the state of Georgia." },
+  { title: "Department of Revenue", body: "GA DOR registration on file." },
+  { title: "Department of Labor", body: "GA DOL compliance for payroll and workers." },
+  { title: "Federal EIN", body: "Registered with the IRS." },
+  { title: "Business banking", body: "Separate business accounts for clean bookkeeping." },
+  { title: "Insurance", body: "General liability coverage on every job. Certificate available on request." },
+];
+---
+
+<BaseLayout title="About" description="About Titan Arbor Solutions and owner Diego Zunun — five years in tree care, locally owned, working toward ISA Certified Arborist credentials.">
+
+  <section class="bg-arbor-800 text-cream py-16 sm:py-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <p class="text-sm uppercase tracking-widest text-arbor-100 mb-3">About</p>
+      <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight">
+        Built around one principle: do it right.
+      </h1>
+      <p class="mt-6 text-lg sm:text-xl text-arbor-100 max-w-2xl">
+        Titan Arbor Solutions is a small, locally owned tree care company serving metro Atlanta — built by people who actually do the work.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mx-auto prose-content">
+      <h2>Meet Diego</h2>
+      <p>
+        Diego Zunun is the owner, founder, and lead arborist at Titan Arbor Solutions. He's been working in tree care for five years and is currently studying for the ISA Certified Arborist exam — the gold-standard credential in the industry.
+      </p>
+      <p>
+        When you call Titan Arbor, Diego is the person you'll talk to. He's the person who shows up to quote the job, runs the crew on the day, and follows up after. There's no layer of sales reps, no "let me check with my manager," no surprises on the invoice. The same person who looks at your tree is the person responsible for the work.
+      </p>
+
+      <h2>How we think about the job</h2>
+      <p>
+        Tree care is one of the most dangerous trades in the country, and one of the easiest to do badly. A bad pruning cut won't kill anyone, but it can shorten a tree's life by decades. A bad removal can take out a house. We take both seriously.
+      </p>
+      <p>
+        That means following the industry standards: ANSI A300 for pruning, ANSI Z133 for safety, no topping, no spike-climbing live trees, no cutting under load without proper rigging. It means honest assessments — telling you when a tree can be saved and when it can't, and not selling work that doesn't need doing.
+      </p>
+
+      <h2>Working toward ISA Certified Arborist</h2>
+      <p>
+        Diego is actively studying for the <strong>ISA Certified Arborist</strong> exam, the industry's recognized credential. He's working through the certification book now and expects to test within the next few months. Until then, "ISA Certified Arborist" is something we aspire to, not something we claim. We'll update this page the day the cert is in hand.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-white py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-5xl mx-auto">
+      <p class="text-sm uppercase tracking-widest text-arbor-800 mb-3 font-semibold text-center">Credentials</p>
+      <h2 class="text-3xl sm:text-4xl font-bold text-arbor-900 tracking-tight text-center mb-12">
+        Boring but important
+      </h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {credentials.map((c) => (
+          <div class="border border-arbor-800/15 rounded-2xl p-6 bg-cream/40">
+            <div class="w-10 h-10 rounded-full bg-arbor-800 text-cream flex items-center justify-center mb-4">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </div>
+            <h3 class="font-semibold text-arbor-900 mb-1">{c.title}</h3>
+            <p class="text-sm text-arbor-900/70">{c.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTA heading={`Want to talk to Diego directly?`} body={`That's the only way it works around here. Call ${site.phonePrimary} for a free quote.`} />
+</BaseLayout>

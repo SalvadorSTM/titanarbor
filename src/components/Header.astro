@@ -1,0 +1,124 @@
+---
+import { site, telHref } from "../lib/site";
+
+const nav = [
+  { label: "Home", href: "/" },
+  { label: "Services", href: "/services/" },
+  { label: "About", href: "/about/" },
+  { label: "Service Areas", href: "/service-areas/" },
+  { label: "Contact", href: "/contact/" },
+];
+
+const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
+const isActive = (href: string) => {
+  const h = href.replace(/\/$/, "") || "/";
+  return h === "/" ? currentPath === "/" : currentPath.startsWith(h);
+};
+---
+
+<header class="sticky top-0 z-40 bg-cream/95 backdrop-blur-sm border-b border-arbor-800/10">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16 sm:h-20">
+
+      <a href="/" class="flex items-center gap-3 group">
+        <img src="/logo.png" alt="" class="w-10 h-10 sm:w-12 sm:h-12 rounded-full ring-2 ring-arbor-800/20 group-hover:ring-arbor-800/40 transition" />
+        <span class="font-bold text-arbor-900 text-base sm:text-lg leading-tight">
+          {site.shortName}
+          <span class="block text-xs font-normal text-arbor-800/70 uppercase tracking-wider">Solutions</span>
+        </span>
+      </a>
+
+      <nav class="hidden lg:flex items-center gap-1" aria-label="Primary">
+        {nav.map((item) => (
+          <a
+            href={item.href}
+            class:list={[
+              "px-4 py-2 rounded-md text-sm font-medium transition",
+              isActive(item.href)
+                ? "text-arbor-800 bg-arbor-800/10"
+                : "text-arbor-900 hover:text-arbor-800 hover:bg-arbor-800/5",
+            ]}
+          >
+            {item.label}
+          </a>
+        ))}
+      </nav>
+
+      <div class="hidden lg:flex items-center gap-3">
+        <a href={telHref(site.phonePrimary)} class="text-sm font-semibold text-arbor-900 hover:text-arbor-700">
+          {site.phonePrimary}
+        </a>
+        <a
+          href={telHref(site.phonePrimary)}
+          class="inline-flex items-center gap-2 px-4 py-2 bg-arbor-800 text-cream rounded-full text-sm font-semibold hover:bg-arbor-700 transition shadow-sm"
+        >
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z"/>
+          </svg>
+          Call for a Quote
+        </a>
+      </div>
+
+      <button
+        id="mobile-menu-toggle"
+        type="button"
+        class="lg:hidden inline-flex items-center justify-center p-2 rounded-md text-arbor-900 hover:bg-arbor-800/10 focus:outline-none focus:ring-2 focus:ring-arbor-800"
+        aria-controls="mobile-menu"
+        aria-expanded="false"
+        aria-label="Toggle menu"
+      >
+        <svg class="w-6 h-6 menu-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+        <svg class="w-6 h-6 menu-close hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+
+    <div id="mobile-menu" class="lg:hidden hidden pb-4">
+      <nav class="flex flex-col gap-1" aria-label="Mobile primary">
+        {nav.map((item) => (
+          <a
+            href={item.href}
+            class:list={[
+              "px-4 py-3 rounded-md text-base font-medium",
+              isActive(item.href)
+                ? "text-arbor-800 bg-arbor-800/10"
+                : "text-arbor-900 hover:bg-arbor-800/5",
+            ]}
+          >
+            {item.label}
+          </a>
+        ))}
+      </nav>
+      <div class="mt-4 flex flex-col gap-3 px-2">
+        <a
+          href={telHref(site.phonePrimary)}
+          class="inline-flex items-center justify-center gap-2 w-full px-4 py-3 bg-arbor-800 text-cream rounded-full font-semibold hover:bg-arbor-700"
+        >
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z"/>
+          </svg>
+          Call {site.phonePrimary}
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  const btn = document.getElementById("mobile-menu-toggle");
+  const menu = document.getElementById("mobile-menu");
+  const openIcon = btn?.querySelector(".menu-open");
+  const closeIcon = btn?.querySelector(".menu-close");
+  btn?.addEventListener("click", () => {
+    const isOpen = menu?.classList.toggle("hidden") === false;
+    btn.setAttribute("aria-expanded", String(isOpen));
+    openIcon?.classList.toggle("hidden", isOpen);
+    closeIcon?.classList.toggle("hidden", !isOpen);
+  });
+</script>

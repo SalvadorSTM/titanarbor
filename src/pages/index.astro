@@ -1,91 +1,153 @@
 ---
-import "../styles/global.css";
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ServiceCard from "../components/ServiceCard.astro";
+import CTA from "../components/CTA.astro";
+import { site, serviceAreas, telHref } from "../lib/site";
 
-const services = [
-  "Tree Removal",
-  "Tree Trimming",
-  "Pruning",
-  "Stump Grinding",
-  "Debris Hauling",
-  "Disease & Pest Diagnosis",
-  "Emergency Storm Response",
-];
-
-const serviceAreas = [
-  "Atlanta", "Decatur", "Stone Mountain", "Sandy Springs",
-  "Roswell", "Marietta", "Dunwoody", "Brookhaven",
-  "Tucker", "Avondale Estates", "Smyrna", "Chamblee",
-];
-
-const phone = "(999) 999-9999";
-const email = "info@titanarbor.com";
-const year = new Date().getFullYear();
+const services = (await getCollection("services")).sort(
+  (a, b) => a.data.order - b.data.order,
+);
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/png" href="/logo.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="generator" content={Astro.generator} />
-    <meta name="description" content="Titan Arbor Solutions — professional tree care for metro Atlanta. Site launching soon." />
-    <meta name="robots" content="noindex" />
-    <title>Titan Arbor Solutions — Coming Soon</title>
-  </head>
-  <body class="bg-cream text-arbor-900 antialiased">
-    <main class="min-h-screen flex flex-col">
+<BaseLayout>
+  <section class="relative bg-arbor-800 text-cream overflow-hidden">
+    <div class="absolute inset-0 opacity-[0.04] pointer-events-none" aria-hidden="true">
+      <svg class="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="leaves" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+            <path d="M10 2 Q15 5 15 10 Q15 15 10 18 Q5 15 5 10 Q5 5 10 2" fill="currentColor"/>
+          </pattern>
+        </defs>
+        <rect width="100" height="100" fill="url(#leaves)"/>
+      </svg>
+    </div>
 
-      <section class="bg-arbor-800 text-cream flex-1 flex items-center justify-center px-6 py-20">
-        <div class="max-w-3xl text-center">
-          <img src="/logo.png" alt="Titan Arbor Solutions" class="w-48 h-48 mx-auto mb-8 rounded-full shadow-2xl ring-4 ring-arbor-900/40" />
-          <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-4">
-            Titan Arbor Solutions
-          </h1>
-          <p class="text-lg sm:text-xl text-arbor-100 mb-2">
-            Professional tree care for metro Atlanta.
-          </p>
-          <p class="inline-block mt-6 px-4 py-2 rounded-full bg-arbor-900/50 text-cream text-sm uppercase tracking-widest">
-            Site launching soon
-          </p>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28 lg:py-32 grid lg:grid-cols-12 gap-12 items-center">
+      <div class="lg:col-span-7">
+        <p class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cream/10 text-cream text-xs uppercase tracking-widest font-medium mb-6">
+          <span class="w-2 h-2 rounded-full bg-cream animate-pulse"></span>
+          24-hour emergency response
+        </p>
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
+          Tree care done right,<br/>
+          <span class="text-arbor-100">by people who live here.</span>
+        </h1>
+        <p class="mt-6 text-lg sm:text-xl text-arbor-100 max-w-2xl leading-relaxed">
+          Removal, trimming, pruning, stump grinding, and 24-hour storm response across metro Atlanta. Locally owned, licensed, insured. Free quotes.
+        </p>
+        <div class="mt-8 flex flex-col sm:flex-row gap-4">
+          <a
+            href={telHref(site.phonePrimary)}
+            class="inline-flex items-center justify-center gap-2 px-7 py-4 bg-cream text-arbor-900 rounded-full font-semibold hover:bg-white transition shadow-lg"
+          >
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z"/>
+            </svg>
+            Call {site.phonePrimary}
+          </a>
+          <a
+            href="/services/"
+            class="inline-flex items-center justify-center gap-2 px-7 py-4 border-2 border-cream/30 text-cream rounded-full font-semibold hover:bg-cream/10 transition"
+          >
+            See our services
+          </a>
         </div>
-      </section>
+      </div>
 
-      <section class="px-6 py-16 max-w-5xl mx-auto w-full">
-        <h2 class="text-2xl sm:text-3xl font-semibold mb-6 text-center">Our Services</h2>
-        <ul class="flex flex-wrap justify-center gap-3">
-          {services.map((s) => (
-            <li class="px-5 py-2 bg-white border border-arbor-800/15 rounded-full text-arbor-800 font-medium shadow-sm">
-              {s}
+      <div class="lg:col-span-5 flex justify-center lg:justify-end">
+        <img
+          src="/logo.png"
+          alt="Titan Arbor Solutions logo"
+          class="w-56 sm:w-72 lg:w-80 h-auto rounded-full shadow-2xl ring-8 ring-cream/10"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 bg-cream">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <p class="text-sm uppercase tracking-widest text-arbor-800 mb-3 font-semibold">What we do</p>
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-arbor-900 tracking-tight">
+          Seven services. One honest crew.
+        </h2>
+        <p class="mt-4 text-lg text-arbor-900/70">
+          From routine maintenance to storm emergencies, we handle the full lifecycle of every tree on your property.
+        </p>
+      </div>
+
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {services.map((s) => (
+          <ServiceCard
+            title={s.data.title}
+            summary={s.data.summary}
+            icon={s.data.icon}
+            href={`/services/${s.id}/`}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white py-16 sm:py-24 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+      <div>
+        <p class="text-sm uppercase tracking-widest text-arbor-800 mb-3 font-semibold">Why Titan Arbor</p>
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-arbor-900 tracking-tight">
+          Local. Honest. On call.
+        </h2>
+        <p class="mt-6 text-lg text-arbor-900/80 leading-relaxed">
+          Titan Arbor Solutions is owned and operated by Diego Zunun — lead arborist on every job, five years in the trade, currently working toward ISA Certified Arborist credentials.
+        </p>
+        <p class="mt-4 text-lg text-arbor-900/80 leading-relaxed">
+          You'll never get bait-and-switch pricing or a salesperson who never sets foot near your tree. The same person who quotes the job runs the job.
+        </p>
+        <div class="mt-8 grid sm:grid-cols-2 gap-4">
+          {[
+            { title: "Licensed", body: "Georgia LLC, registered with the GA Department of Revenue and Department of Labor." },
+            { title: "Insured", body: "General liability coverage on every job. Certificate available on request." },
+            { title: "Free quotes", body: "Honest assessments. If a tree doesn't need work, we'll tell you." },
+            { title: "24-hour storm line", body: "When the wind takes one down, we answer at any hour." },
+          ].map((item) => (
+            <div class="border-l-2 border-arbor-800 pl-4">
+              <p class="font-semibold text-arbor-900">{item.title}</p>
+              <p class="text-sm text-arbor-900/70 mt-1">{item.body}</p>
+            </div>
+          ))}
+        </div>
+        <a href="/about/" class="inline-flex items-center gap-1 mt-8 text-arbor-800 font-semibold hover:gap-2 transition-all">
+          More about Diego and Titan Arbor
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="5" y1="12" x2="19" y2="12"/>
+            <polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </a>
+      </div>
+
+      <div class="bg-arbor-800 rounded-3xl p-8 sm:p-10 text-cream">
+        <p class="text-sm uppercase tracking-widest text-arbor-100 mb-3 font-semibold">Service areas</p>
+        <h3 class="text-2xl sm:text-3xl font-bold mb-6">Across metro Atlanta</h3>
+        <ul class="grid grid-cols-2 gap-x-6 gap-y-2 text-arbor-100">
+          {serviceAreas.map((area) => (
+            <li class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-cream/80 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              {area}
             </li>
           ))}
         </ul>
-      </section>
+        <a href="/service-areas/" class="inline-flex items-center gap-1 mt-6 text-cream font-semibold hover:gap-2 transition-all">
+          Not seeing your area? Ask us
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="5" y1="12" x2="19" y2="12"/>
+            <polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
 
-      <section class="bg-white px-6 py-16">
-        <div class="max-w-5xl mx-auto grid sm:grid-cols-2 gap-10 text-center sm:text-left">
-          <div>
-            <h2 class="text-xl font-semibold mb-3 text-arbor-800 uppercase tracking-wider text-sm">Get in touch</h2>
-            <p class="text-3xl font-bold mb-2">
-              <a href={`tel:${phone.replace(/\D/g, "")}`} class="hover:text-arbor-700">{phone}</a>
-            </p>
-            <p class="text-lg">
-              <a href={`mailto:${email}`} class="hover:text-arbor-700 underline-offset-4 hover:underline">{email}</a>
-            </p>
-            <p class="mt-4 text-sm text-arbor-900/60">24-hour emergency storm response</p>
-          </div>
-          <div>
-            <h2 class="text-xl font-semibold mb-3 text-arbor-800 uppercase tracking-wider text-sm">Service areas</h2>
-            <p class="text-base leading-relaxed">
-              {serviceAreas.join(" · ")}
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <footer class="bg-arbor-900 text-arbor-100 px-6 py-8 text-center text-sm">
-        &copy; {year} Titan Arbor Solutions. All rights reserved.
-      </footer>
-
-    </main>
-  </body>
-</html>
+  <CTA />
+</BaseLayout>

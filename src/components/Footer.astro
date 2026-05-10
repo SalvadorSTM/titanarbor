@@ -1,0 +1,79 @@
+---
+import { site, services, serviceAreas, telHref, mailHref } from "../lib/site";
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-arbor-900 text-arbor-100">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid gap-10 md:grid-cols-2 lg:grid-cols-4">
+
+    <div>
+      <div class="flex items-center gap-3 mb-4">
+        <img src="/logo.png" alt="" class="w-12 h-12 rounded-full ring-2 ring-arbor-100/20" />
+        <div class="font-bold text-cream text-lg">
+          {site.shortName}
+          <span class="block text-xs font-normal text-arbor-100/70 uppercase tracking-wider">Solutions</span>
+        </div>
+      </div>
+      <p class="text-sm text-arbor-100/80 leading-relaxed">
+        Locally owned tree care in {site.legal.state}.
+        Licensed, insured, and on call when you need us.
+      </p>
+    </div>
+
+    <div>
+      <h3 class="text-cream font-semibold uppercase tracking-wider text-sm mb-4">Services</h3>
+      <ul class="space-y-2 text-sm">
+        {services.map((s) => (
+          <li>
+            <a href={`/services/${s.slug}/`} class="text-arbor-100/80 hover:text-cream transition">
+              {s.title}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <div>
+      <h3 class="text-cream font-semibold uppercase tracking-wider text-sm mb-4">Service Areas</h3>
+      <ul class="grid grid-cols-2 gap-x-3 gap-y-1 text-sm text-arbor-100/80">
+        {serviceAreas.slice(0, 8).map((a) => <li>{a}</li>)}
+      </ul>
+      <a href="/service-areas/" class="inline-block mt-3 text-sm text-cream hover:underline underline-offset-4">
+        See all areas →
+      </a>
+    </div>
+
+    <div>
+      <h3 class="text-cream font-semibold uppercase tracking-wider text-sm mb-4">Contact</h3>
+      <ul class="space-y-3 text-sm">
+        <li>
+          <a href={telHref(site.phonePrimary)} class="text-cream font-semibold text-base hover:underline underline-offset-4">
+            {site.phonePrimary}
+          </a>
+          <div class="text-arbor-100/60 text-xs">Primary line</div>
+        </li>
+        <li>
+          <a href={telHref(site.phoneBackup)} class="text-arbor-100/80 hover:text-cream">
+            {site.phoneBackup}
+          </a>
+          <div class="text-arbor-100/60 text-xs">Backup line</div>
+        </li>
+        <li>
+          <a href={mailHref(site.email)} class="text-arbor-100/80 hover:text-cream break-all">
+            {site.email}
+          </a>
+        </li>
+        <li class="text-arbor-100/70 text-xs pt-2">
+          {site.hours}
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="border-t border-arbor-100/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-arbor-100/60">
+      <p>&copy; {year} {site.name}. All rights reserved.</p>
+      <p>{site.legal.state} {site.legal.entityType} · Licensed &amp; insured</p>
+    </div>
+  </div>
+</footer>

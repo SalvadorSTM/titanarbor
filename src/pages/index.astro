@@ -1,0 +1,91 @@
+---
+import "../styles/global.css";
+
+const services = [
+  "Tree Removal",
+  "Tree Trimming",
+  "Pruning",
+  "Stump Grinding",
+  "Debris Hauling",
+  "Disease & Pest Diagnosis",
+  "Emergency Storm Response",
+];
+
+const serviceAreas = [
+  "Atlanta", "Decatur", "Stone Mountain", "Sandy Springs",
+  "Roswell", "Marietta", "Dunwoody", "Brookhaven",
+  "Tucker", "Avondale Estates", "Smyrna", "Chamblee",
+];
+
+const phone = "(999) 999-9999";
+const email = "info@titanarbor.com";
+const year = new Date().getFullYear();
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="/logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content="Titan Arbor Solutions — professional tree care for metro Atlanta. Site launching soon." />
+    <meta name="robots" content="noindex" />
+    <title>Titan Arbor Solutions — Coming Soon</title>
+  </head>
+  <body class="bg-cream text-arbor-900 antialiased">
+    <main class="min-h-screen flex flex-col">
+
+      <section class="bg-arbor-800 text-cream flex-1 flex items-center justify-center px-6 py-20">
+        <div class="max-w-3xl text-center">
+          <img src="/logo.png" alt="Titan Arbor Solutions" class="w-48 h-48 mx-auto mb-8 rounded-full shadow-2xl ring-4 ring-arbor-900/40" />
+          <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-4">
+            Titan Arbor Solutions
+          </h1>
+          <p class="text-lg sm:text-xl text-arbor-100 mb-2">
+            Professional tree care for metro Atlanta.
+          </p>
+          <p class="inline-block mt-6 px-4 py-2 rounded-full bg-arbor-900/50 text-cream text-sm uppercase tracking-widest">
+            Site launching soon
+          </p>
+        </div>
+      </section>
+
+      <section class="px-6 py-16 max-w-5xl mx-auto w-full">
+        <h2 class="text-2xl sm:text-3xl font-semibold mb-6 text-center">Our Services</h2>
+        <ul class="flex flex-wrap justify-center gap-3">
+          {services.map((s) => (
+            <li class="px-5 py-2 bg-white border border-arbor-800/15 rounded-full text-arbor-800 font-medium shadow-sm">
+              {s}
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section class="bg-white px-6 py-16">
+        <div class="max-w-5xl mx-auto grid sm:grid-cols-2 gap-10 text-center sm:text-left">
+          <div>
+            <h2 class="text-xl font-semibold mb-3 text-arbor-800 uppercase tracking-wider text-sm">Get in touch</h2>
+            <p class="text-3xl font-bold mb-2">
+              <a href={`tel:${phone.replace(/\D/g, "")}`} class="hover:text-arbor-700">{phone}</a>
+            </p>
+            <p class="text-lg">
+              <a href={`mailto:${email}`} class="hover:text-arbor-700 underline-offset-4 hover:underline">{email}</a>
+            </p>
+            <p class="mt-4 text-sm text-arbor-900/60">24-hour emergency storm response</p>
+          </div>
+          <div>
+            <h2 class="text-xl font-semibold mb-3 text-arbor-800 uppercase tracking-wider text-sm">Service areas</h2>
+            <p class="text-base leading-relaxed">
+              {serviceAreas.join(" · ")}
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <footer class="bg-arbor-900 text-arbor-100 px-6 py-8 text-center text-sm">
+        &copy; {year} Titan Arbor Solutions. All rights reserved.
+      </footer>
+
+    </main>
+  </body>
+</html>

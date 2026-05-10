@@ -117,7 +117,7 @@ export const serviceAreas: ServiceArea[] = [
   { name: "Brookhaven", slug: "brookhaven", blurb: "Towering hardwoods, classic intown." },
   { name: "Tucker", slug: "tucker", blurb: "Shaded residential streets." },
   { name: "Avondale Estates", slug: "avondale-estates", blurb: "Tudor homes under tall oaks." },
-  { name: "Smyrna", slug: "smyrna", blurb: "From Vinings to the Battery." },
+  { name: "Smyrna", slug: "smyrna", blurb: "From Market Village to the Battery." },
   { name: "Chamblee", slug: "chamblee", blurb: "Buford Highway and beyond." },
 ];
 

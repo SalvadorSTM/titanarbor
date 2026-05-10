@@ -74,6 +74,7 @@ const services = (await getCollection("services")).sort(
             summary={s.data.summary}
             icon={s.data.icon}
             href={`/services/${s.id}/`}
+            image={`/images/services/${s.id}.jpg`}
           />
         ))}
       </div>

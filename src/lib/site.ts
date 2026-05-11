@@ -17,6 +17,8 @@ export const site = {
   },
   legal: {
     state: "Georgia",
+    stateAbbr: "GA",
+    city: "Atlanta",
     entityType: "LLC",
     licensed: true,
     insured: true,
@@ -100,26 +102,35 @@ export const services: Service[] = [
   },
 ];
 
+export type County = "Fulton" | "DeKalb" | "Cobb";
+
 export type ServiceArea = {
   name: string;
   slug: string;
   blurb: string;
+  county: County;
 };
 
 export const serviceAreas: ServiceArea[] = [
-  { name: "Atlanta", slug: "atlanta", blurb: "Inside the perimeter, neighborhood by neighborhood." },
-  { name: "Decatur", slug: "decatur", blurb: "Old-growth oaks and historic streets." },
-  { name: "Stone Mountain", slug: "stone-mountain", blurb: "From the lake to the park's edge." },
-  { name: "Sandy Springs", slug: "sandy-springs", blurb: "Mature canopies along the Chattahoochee." },
-  { name: "Roswell", slug: "roswell", blurb: "Historic district to the river." },
-  { name: "Marietta", slug: "marietta", blurb: "From the square to East Cobb." },
-  { name: "Dunwoody", slug: "dunwoody", blurb: "Big oaks, big yards." },
-  { name: "Brookhaven", slug: "brookhaven", blurb: "Towering hardwoods, classic intown." },
-  { name: "Tucker", slug: "tucker", blurb: "Shaded residential streets." },
-  { name: "Avondale Estates", slug: "avondale-estates", blurb: "Tudor homes under tall oaks." },
-  { name: "Smyrna", slug: "smyrna", blurb: "From Market Village to the Battery." },
-  { name: "Chamblee", slug: "chamblee", blurb: "Buford Highway and beyond." },
-  { name: "Doraville", slug: "doraville", blurb: "Buford Highway's international district." },
+  { name: "Atlanta", slug: "atlanta", blurb: "Inside the perimeter, neighborhood by neighborhood.", county: "Fulton" },
+  { name: "Sandy Springs", slug: "sandy-springs", blurb: "Mature canopies along the Chattahoochee.", county: "Fulton" },
+  { name: "Roswell", slug: "roswell", blurb: "Historic district to the river.", county: "Fulton" },
+  { name: "Decatur", slug: "decatur", blurb: "Old-growth oaks and historic streets.", county: "DeKalb" },
+  { name: "Stone Mountain", slug: "stone-mountain", blurb: "From the lake to the park's edge.", county: "DeKalb" },
+  { name: "Dunwoody", slug: "dunwoody", blurb: "Big oaks, big yards.", county: "DeKalb" },
+  { name: "Brookhaven", slug: "brookhaven", blurb: "Towering hardwoods, classic intown.", county: "DeKalb" },
+  { name: "Tucker", slug: "tucker", blurb: "Shaded residential streets.", county: "DeKalb" },
+  { name: "Avondale Estates", slug: "avondale-estates", blurb: "Tudor homes under tall oaks.", county: "DeKalb" },
+  { name: "Chamblee", slug: "chamblee", blurb: "Buford Highway and beyond.", county: "DeKalb" },
+  { name: "Doraville", slug: "doraville", blurb: "Buford Highway's international district.", county: "DeKalb" },
+  { name: "Marietta", slug: "marietta", blurb: "From the square to East Cobb.", county: "Cobb" },
+  { name: "Smyrna", slug: "smyrna", blurb: "From Market Village to the Battery.", county: "Cobb" },
+];
+
+export const counties: { name: County; blurb: string }[] = [
+  { name: "Fulton", blurb: "Atlanta and the northern Fulton suburbs along GA-400." },
+  { name: "DeKalb", blurb: "From intown Decatur out to Stone Mountain and the eastern perimeter." },
+  { name: "Cobb", blurb: "Marietta, Smyrna, and the western metro on the other side of the Chattahoochee." },
 ];
 
 export function telHref(num: string): string {

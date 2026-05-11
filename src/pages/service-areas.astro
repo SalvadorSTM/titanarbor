@@ -3,8 +3,13 @@ import { Image } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import CTA from "../components/CTA.astro";
 import CityCard from "../components/CityCard.astro";
-import { serviceAreas, site } from "../lib/site";
+import { serviceAreas, counties, site } from "../lib/site";
 import areasHero from "../assets/images/service-areas.jpg";
+
+const areasByCounty = counties.map((c) => ({
+  ...c,
+  cities: serviceAreas.filter((a) => a.county === c.name),
+}));
 ---
 
 <BaseLayout
@@ -29,21 +34,31 @@ import areasHero from "../assets/images/service-areas.jpg";
         Where we work
       </h1>
       <p class="mt-6 text-lg sm:text-xl text-arbor-100 max-w-2xl">
-        Based in {site.legal.state}. We cover the city of Atlanta and the surrounding metro — north, south, east, and west — and we go where the work is.
+        Based in {site.legal.city}, {site.legal.stateAbbr}. We cover three metro counties — Fulton, DeKalb, and Cobb — and we go where the work is.
       </p>
     </div>
   </section>
 
   <section class="py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
-    <div class="max-w-5xl mx-auto">
-      <h2 class="text-2xl sm:text-3xl font-bold text-arbor-900 mb-8 text-center">Cities we regularly serve</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {serviceAreas.map((area) => (
-          <CityCard name={area.name} slug={area.slug} blurb={area.blurb} />
-        ))}
-      </div>
+    <div class="max-w-6xl mx-auto space-y-14">
+      {areasByCounty.map((county) => (
+        <div>
+          <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-2 mb-6 border-b border-arbor-800/15 pb-4">
+            <div>
+              <p class="text-sm uppercase tracking-widest text-arbor-800 font-semibold mb-1">County</p>
+              <h2 class="text-2xl sm:text-3xl font-bold text-arbor-900 tracking-tight">{county.name} County</h2>
+            </div>
+            <p class="text-arbor-900/70 sm:text-right sm:max-w-md">{county.blurb}</p>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {county.cities.map((area) => (
+              <CityCard name={area.name} slug={area.slug} blurb={area.blurb} />
+            ))}
+          </div>
+        </div>
+      ))}
 
-      <div class="mt-12 bg-arbor-100/40 border border-arbor-800/15 rounded-2xl p-6 sm:p-8 text-center">
+      <div class="bg-arbor-100/40 border border-arbor-800/15 rounded-2xl p-6 sm:p-8 text-center">
         <h3 class="text-xl sm:text-2xl font-bold text-arbor-900 mb-2">Don't see your area?</h3>
         <p class="text-arbor-900/80 max-w-2xl mx-auto">
           The list above is what we cover routinely, but we travel for the right job. Call us with your address and we'll tell you straight up whether it's a fit. No charge for the conversation.

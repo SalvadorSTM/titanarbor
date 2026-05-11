@@ -40,6 +40,7 @@ const jsonLd = site.published
       priceRange: "$$",
       address: {
         "@type": "PostalAddress",
+        addressLocality: site.legal.city,
         addressRegion: site.legal.state,
         addressCountry: "US",
       },

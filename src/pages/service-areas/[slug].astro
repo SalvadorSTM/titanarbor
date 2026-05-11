@@ -1,0 +1,145 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import CTA from "../../components/CTA.astro";
+import ServiceCard from "../../components/ServiceCard.astro";
+import { serviceAreas, services as servicesList, site } from "../../lib/site";
+import { areaDetails } from "../../lib/area-details";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  return serviceAreas.map((area) => ({
+    params: { slug: area.slug },
+    props: { area },
+  }));
+}
+
+const { area } = Astro.props;
+const detail = areaDetails[area.slug];
+
+if (!detail) {
+  throw new Error(`Missing area detail for slug: ${area.slug}`);
+}
+
+// Map slug -> service data for the "top services" cards
+const allServiceContent = await getCollection("services");
+const serviceBySlug = new Map(allServiceContent.map((s) => [s.id, s]));
+const topServices = detail.topServices
+  .map((slug) => serviceBySlug.get(slug))
+  .filter((s): s is NonNullable<typeof s> => s !== undefined);
+---
+
+<BaseLayout
+  title={`Tree Service in ${area.name}, GA`}
+  description={`Tree care for ${area.name}, Georgia — removal, trimming, pruning, stump grinding, and 24-hour storm response. ${detail.intro.slice(0, 130).trim()}…`}
+>
+  <section class="relative text-cream overflow-hidden">
+    <img
+      src={`/images/cities/${area.slug}.jpg`}
+      alt=""
+      class="absolute inset-0 w-full h-full object-cover"
+      loading="eager"
+    />
+    <div class="absolute inset-0 bg-gradient-to-br from-arbor-900/90 via-arbor-800/80 to-arbor-900/90" aria-hidden="true"></div>
+
+    <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
+      <a href="/service-areas/" class="inline-flex items-center gap-1 text-arbor-100 hover:text-cream text-sm mb-6">
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+        All service areas
+      </a>
+      <p class="text-sm uppercase tracking-widest text-arbor-100 mb-3">Service area</p>
+      <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight drop-shadow-lg">
+        Tree Service in {area.name}, GA
+      </h1>
+      <p class="mt-6 text-lg sm:text-xl text-arbor-100 max-w-2xl">
+        {detail.shortHeadline}
+      </p>
+    </div>
+  </section>
+
+  <section class="py-12 sm:py-16 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mx-auto prose-content">
+      <p class="text-lg leading-relaxed">{detail.intro}</p>
+    </div>
+  </section>
+
+  <section class="bg-white py-12 sm:py-16 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-5xl mx-auto">
+      <p class="text-sm uppercase tracking-widest text-arbor-800 mb-3 font-semibold text-center">Trees in this area</p>
+      <h2 class="text-3xl sm:text-4xl font-bold text-arbor-900 tracking-tight text-center mb-10">
+        What we see most in {area.name}
+      </h2>
+      <div class="grid sm:grid-cols-2 gap-4">
+        {detail.commonTrees.map((tree) => (
+          <div class="bg-cream/40 border border-arbor-800/15 rounded-2xl p-5">
+            <p class="font-semibold text-arbor-900 mb-1">{tree.name}</p>
+            <p class="text-sm text-arbor-900/70 leading-relaxed">{tree.note}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 sm:py-16 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-5xl mx-auto">
+      <p class="text-sm uppercase tracking-widest text-arbor-800 mb-3 font-semibold text-center">Local issues</p>
+      <h2 class="text-3xl sm:text-4xl font-bold text-arbor-900 tracking-tight text-center mb-10">
+        What tree owners deal with here
+      </h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        {detail.localIssues.map((issue) => (
+          <div class="bg-white border border-arbor-800/10 rounded-2xl p-6 shadow-sm">
+            <div class="w-10 h-10 rounded-full bg-arbor-800/10 text-arbor-800 flex items-center justify-center mb-4">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="12" y1="8" x2="12" y2="12"/>
+                <line x1="12" y1="16" x2="12.01" y2="16"/>
+              </svg>
+            </div>
+            <h3 class="font-semibold text-arbor-900 mb-2">{issue.title}</h3>
+            <p class="text-sm text-arbor-900/70 leading-relaxed">{issue.body}</p>
+          </div>
+        ))}
+      </div>
+      <div class="mt-10 bg-arbor-100/40 border-l-4 border-arbor-800 rounded-r-2xl p-5 max-w-3xl mx-auto">
+        <p class="text-sm uppercase tracking-widest text-arbor-800 mb-1 font-semibold">Working in {area.name}</p>
+        <p class="text-arbor-900/80 leading-relaxed">{detail.logisticsNote}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white py-12 sm:py-16 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto">
+      <p class="text-sm uppercase tracking-widest text-arbor-800 mb-3 font-semibold text-center">Most requested in {area.name}</p>
+      <h2 class="text-3xl sm:text-4xl font-bold text-arbor-900 tracking-tight text-center mb-10">
+        Services we run most in this area
+      </h2>
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {topServices.map((s) => (
+          <ServiceCard
+            title={s.data.title}
+            summary={s.data.summary}
+            icon={s.data.icon}
+            href={`/services/${s.id}/`}
+            image={`/images/services/${s.id}.jpg`}
+          />
+        ))}
+      </div>
+      <p class="text-center mt-8">
+        <a href="/#services" class="inline-flex items-center gap-1 text-arbor-800 font-semibold hover:gap-2 transition-all">
+          See all 7 services
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="5" y1="12" x2="19" y2="12"/>
+            <polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </a>
+      </p>
+    </div>
+  </section>
+
+  <CTA
+    heading={`Need a tree handled in ${area.name}?`}
+    body={`Free on-site quote, honest assessment, no pressure. Call ${site.phonePrimary} — Diego answers.`}
+  />
+</BaseLayout>

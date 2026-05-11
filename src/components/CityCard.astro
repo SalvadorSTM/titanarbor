@@ -3,18 +3,23 @@ interface Props {
   name: string;
   slug: string;
   blurb: string;
+  href?: string;
 }
 
-const { name, slug, blurb } = Astro.props;
+const { name, slug, blurb, href } = Astro.props;
+const linkHref = href ?? `/service-areas/${slug}/`;
 ---
 
-<article class="bg-white border border-arbor-800/10 rounded-2xl overflow-hidden shadow-sm">
+<a
+  href={linkHref}
+  class="group block bg-white border border-arbor-800/10 rounded-2xl overflow-hidden shadow-sm hover:border-arbor-800/30 hover:shadow-lg transition"
+>
   <div class="relative aspect-[16/10] overflow-hidden bg-arbor-100">
     <img
       src={`/images/cities/${slug}.jpg`}
       alt=""
       loading="lazy"
-      class="absolute inset-0 w-full h-full object-cover"
+      class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
     />
     <div class="absolute inset-0 bg-gradient-to-t from-arbor-900/60 via-transparent to-transparent pointer-events-none"></div>
     <div class="absolute bottom-3 left-4 right-4 text-cream">
@@ -27,5 +32,11 @@ const { name, slug, blurb } = Astro.props;
       </h3>
     </div>
   </div>
-  <p class="px-5 py-4 text-sm text-arbor-900/70 leading-relaxed">{blurb}</p>
-</article>
+  <div class="px-5 py-4 flex items-center justify-between gap-3">
+    <p class="text-sm text-arbor-900/70 leading-relaxed">{blurb}</p>
+    <svg class="w-4 h-4 text-arbor-800 shrink-0 group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <line x1="5" y1="12" x2="19" y2="12"/>
+      <polyline points="12 5 19 12 12 19"/>
+    </svg>
+  </div>
+</a>

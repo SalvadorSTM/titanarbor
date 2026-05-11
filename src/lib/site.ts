@@ -119,6 +119,7 @@ export const serviceAreas: ServiceArea[] = [
   { name: "Avondale Estates", slug: "avondale-estates", blurb: "Tudor homes under tall oaks." },
   { name: "Smyrna", slug: "smyrna", blurb: "From Market Village to the Battery." },
   { name: "Chamblee", slug: "chamblee", blurb: "Buford Highway and beyond." },
+  { name: "Doraville", slug: "doraville", blurb: "Buford Highway's international district." },
 ];
 
 export function telHref(num: string): string {

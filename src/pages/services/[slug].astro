@@ -1,5 +1,6 @@
 ---
 import { getCollection, render } from "astro:content";
+import { Image } from "astro:assets";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import ServiceIcon from "../../components/ServiceIcon.astro";
 import ServiceCard from "../../components/ServiceCard.astro";
@@ -20,16 +21,26 @@ const others = allServices
   .filter((s) => s.id !== service.id)
   .sort((a, b) => a.data.order - b.data.order)
   .slice(0, 3);
+
+const serviceImages = import.meta.glob<{ default: ImageMetadata }>(
+  "../../assets/images/services/*.jpg",
+  { eager: true },
+);
+const heroImg = serviceImages[`../../assets/images/services/${service.id}.jpg`]?.default;
 ---
 
 <BaseLayout title={service.data.title} description={service.data.summary}>
   <section class="relative text-cream overflow-hidden">
-    <img
-      src={`/images/services/${service.id}.jpg`}
-      alt=""
-      class="absolute inset-0 w-full h-full object-cover"
-      loading="eager"
-    />
+    {heroImg && (
+      <Image
+        src={heroImg}
+        alt=""
+        widths={[640, 1024, 1600]}
+        sizes="100vw"
+        class="absolute inset-0 w-full h-full object-cover"
+        loading="eager"
+      />
+    )}
     <div class="absolute inset-0 bg-gradient-to-br from-arbor-900/90 via-arbor-800/80 to-arbor-900/90" aria-hidden="true"></div>
 
     <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
@@ -74,7 +85,7 @@ const others = allServices
             summary={s.data.summary}
             icon={s.data.icon}
             href={`/services/${s.id}/`}
-            image={`/images/services/${s.id}.jpg`}
+            slug={s.id}
           />
         ))}
       </div>

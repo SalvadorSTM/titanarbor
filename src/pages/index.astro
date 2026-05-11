@@ -1,9 +1,11 @@
 ---
 import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ServiceCard from "../components/ServiceCard.astro";
 import CTA from "../components/CTA.astro";
 import { site, serviceAreas, telHref } from "../lib/site";
+import heroImage from "../assets/images/hero.jpg";
 
 const services = (await getCollection("services")).sort(
   (a, b) => a.data.order - b.data.order,
@@ -12,12 +14,13 @@ const services = (await getCollection("services")).sort(
 
 <BaseLayout>
   <section class="relative text-cream overflow-hidden min-h-[70vh] flex items-center">
-    <img
-      src="/images/hero.jpg"
+    <Image
+      src={heroImage}
       alt=""
+      widths={[640, 1024, 1600, 2000]}
+      sizes="100vw"
       class="absolute inset-0 w-full h-full object-cover"
       loading="eager"
-      fetchpriority="high"
     />
     <div class="absolute inset-0 bg-gradient-to-br from-arbor-900/85 via-arbor-800/75 to-arbor-900/90" aria-hidden="true"></div>
 
@@ -90,7 +93,7 @@ const services = (await getCollection("services")).sort(
             summary={s.data.summary}
             icon={s.data.icon}
             href={`/services/${s.id}/`}
-            image={`/images/services/${s.id}.jpg`}
+            slug={s.id}
           />
         ))}
       </div>

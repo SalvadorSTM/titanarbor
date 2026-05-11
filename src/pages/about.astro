@@ -1,7 +1,10 @@
 ---
+import { Image } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import CTA from "../components/CTA.astro";
 import { site } from "../lib/site";
+import aboutHero from "../assets/images/about.jpg";
+import aboutInField from "../assets/images/about-2.jpg";
 
 const credentials = [
   { title: "Georgia LLC", body: "Registered limited liability company in the state of Georgia." },
@@ -15,9 +18,11 @@ const credentials = [
 <BaseLayout title="About" description="About Titan Arbor Solutions and owner Diego Zunun — five years in tree care, locally owned, working toward ISA Certified Arborist credentials.">
 
   <section class="relative text-cream overflow-hidden">
-    <img
-      src="/images/about.jpg"
+    <Image
+      src={aboutHero}
       alt=""
+      widths={[640, 1024, 1600]}
+      sizes="100vw"
       class="absolute inset-0 w-full h-full object-cover"
       loading="eager"
     />
@@ -60,9 +65,11 @@ const credentials = [
   </section>
 
   <section class="relative overflow-hidden">
-    <img
-      src="/images/about-2.jpg"
+    <Image
+      src={aboutInField}
       alt=""
+      widths={[640, 1024, 1600]}
+      sizes="100vw"
       class="absolute inset-0 w-full h-full object-cover"
       loading="lazy"
     />

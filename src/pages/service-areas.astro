@@ -1,8 +1,10 @@
 ---
+import { Image } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import CTA from "../components/CTA.astro";
 import CityCard from "../components/CityCard.astro";
 import { serviceAreas, site } from "../lib/site";
+import areasHero from "../assets/images/service-areas.jpg";
 ---
 
 <BaseLayout
@@ -11,9 +13,11 @@ import { serviceAreas, site } from "../lib/site";
 >
 
   <section class="relative text-cream overflow-hidden">
-    <img
-      src="/images/service-areas.jpg"
+    <Image
+      src={areasHero}
       alt=""
+      widths={[640, 1024, 1600]}
+      sizes="100vw"
       class="absolute inset-0 w-full h-full object-cover"
       loading="eager"
     />

@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import CTA from "../../components/CTA.astro";
 import ServiceCard from "../../components/ServiceCard.astro";
@@ -26,6 +27,12 @@ const serviceBySlug = new Map(allServiceContent.map((s) => [s.id, s]));
 const topServices = detail.topServices
   .map((slug) => serviceBySlug.get(slug))
   .filter((s): s is NonNullable<typeof s> => s !== undefined);
+
+const cityImages = import.meta.glob<{ default: ImageMetadata }>(
+  "../../assets/images/cities/*.jpg",
+  { eager: true },
+);
+const heroImg = cityImages[`../../assets/images/cities/${area.slug}.jpg`]?.default;
 ---
 
 <BaseLayout
@@ -33,12 +40,16 @@ const topServices = detail.topServices
   description={`Tree care for ${area.name}, Georgia — removal, trimming, pruning, stump grinding, and 24-hour storm response. ${detail.intro.slice(0, 130).trim()}…`}
 >
   <section class="relative text-cream overflow-hidden">
-    <img
-      src={`/images/cities/${area.slug}.jpg`}
-      alt=""
-      class="absolute inset-0 w-full h-full object-cover"
-      loading="eager"
-    />
+    {heroImg && (
+      <Image
+        src={heroImg}
+        alt=""
+        widths={[640, 1024, 1600]}
+        sizes="100vw"
+        class="absolute inset-0 w-full h-full object-cover"
+        loading="eager"
+      />
+    )}
     <div class="absolute inset-0 bg-gradient-to-br from-arbor-900/90 via-arbor-800/80 to-arbor-900/90" aria-hidden="true"></div>
 
     <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
@@ -122,7 +133,7 @@ const topServices = detail.topServices
             summary={s.data.summary}
             icon={s.data.icon}
             href={`/services/${s.id}/`}
-            image={`/images/services/${s.id}.jpg`}
+            slug={s.id}
           />
         ))}
       </div>

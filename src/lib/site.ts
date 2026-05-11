@@ -2,7 +2,7 @@ export const site = {
   name: "Titan Arbor Solutions",
   shortName: "Titan Arbor",
   tagline: "Professional tree care for metro Atlanta",
-  published: false,
+  published: true,
   description:
     "Locally owned tree care company in Georgia. Tree removal, trimming, pruning, stump grinding, debris hauling, disease diagnosis, and 24-hour emergency storm response.",
   url: "https://titanarbor.com",

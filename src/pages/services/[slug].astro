@@ -5,6 +5,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import ServiceIcon from "../../components/ServiceIcon.astro";
 import ServiceCard from "../../components/ServiceCard.astro";
 import CTA from "../../components/CTA.astro";
+import { site, serviceAreas } from "../../lib/site";
 
 export async function getStaticPaths() {
   const services = await getCollection("services");
@@ -27,6 +28,29 @@ const serviceImages = import.meta.glob<{ default: ImageMetadata }>(
   { eager: true },
 );
 const heroImg = serviceImages[`../../assets/images/services/${service.id}.jpg`]?.default;
+
+const serviceUrl = `${site.url}/services/${service.id}/`;
+const serviceSchema = site.published
+  ? {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "@id": `${serviceUrl}#service`,
+      name: service.data.title,
+      description: service.data.summary,
+      url: serviceUrl,
+      serviceType: service.data.title,
+      provider: { "@id": `${site.url}/#business` },
+      areaServed: serviceAreas.map((a) => ({ "@type": "City", name: a.name })),
+      offers: {
+        "@type": "Offer",
+        availability: "https://schema.org/InStock",
+        priceSpecification: {
+          "@type": "PriceSpecification",
+          description: "Free on-site quote",
+        },
+      },
+    }
+  : null;
 ---
 
 <BaseLayout title={service.data.title} description={service.data.summary}>
@@ -91,4 +115,8 @@ const heroImg = serviceImages[`../../assets/images/services/${service.id}.jpg`]?
       </div>
     </div>
   </section>
+
+  {serviceSchema && (
+    <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  )}
 </BaseLayout>

@@ -1,0 +1,141 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import CTA from "../components/CTA.astro";
+import { site, telHref } from "../lib/site";
+
+type FaqGroup = { heading: string; items: { q: string; a: string }[] };
+
+const groups: FaqGroup[] = [
+  {
+    heading: "Quotes and pricing",
+    items: [
+      {
+        q: "Are estimates really free?",
+        a: "Yes. Diego comes out, looks at the tree, walks the site, and gives you a written price. No charge for the visit, no obligation, no pressure if you decide not to hire us.",
+      },
+      {
+        q: "Why does the price vary so much between trees?",
+        a: "Tree work is priced on access, size, complexity, and risk — not by the species or by some flat rate. A 60-foot oak in an open backyard is a different job than a 60-foot oak hanging over a roof and power lines. We'll explain what makes your specific job cost what it costs.",
+      },
+      {
+        q: "Do you charge for cleanup?",
+        a: "No. Cleanup is part of the job. Branches chipped, debris raked, sawdust cleared — included on every job we do. Hauling logs off-site is the one optional add-on (some customers want the firewood, others want it gone).",
+      },
+    ],
+  },
+  {
+    heading: "Scheduling and response",
+    items: [
+      {
+        q: "How fast can you come out for a quote?",
+        a: "For non-urgent work, usually within a few days — sometimes same-day depending on the schedule. Call us and we'll tell you straight up.",
+      },
+      {
+        q: "What about emergencies — what if a tree just fell on my house?",
+        a: "Call 478-268-8020 any time, day or night. Diego is on call for storm work 24/7. First priority is life safety, then stabilizing the damage, then full cleanup. Don't try to cut anything yourself if it's under load — call us first.",
+      },
+      {
+        q: "Do you handle trees on or near power lines?",
+        a: "If the tree is in direct contact with a live line, that's a job for the utility company first — call Georgia Power and they'll handle the line before we touch anything. For trees near (but not touching) lines, yes, we work around them safely.",
+      },
+    ],
+  },
+  {
+    heading: "How we work",
+    items: [
+      {
+        q: "Will Diego be on the job, or do you send someone else?",
+        a: "Diego is the lead arborist on every job. He's the person who quotes it, runs it, and follows up. There's no sales rep, no subcontracted crew you've never met.",
+      },
+      {
+        q: "Do you 'top' trees?",
+        a: "No. Topping — cutting the main trunk back to stubs — is one of the most damaging practices in tree care, even though customers sometimes ask for it. It opens trees to disease and creates weak regrowth that becomes dangerous within a few years. If a tree is too big for its space, the right answer is selective reduction or removal — we'll explain the options.",
+      },
+      {
+        q: "How do you decide whether a tree should come down or be saved?",
+        a: "We look at the structural condition, what's growing inside the trunk (decay, cavities, conks), the surroundings (what could it fall on), and the species' typical disease pressures. If a tree can be reasonably saved, we'll tell you. If it can't, we'll tell you that too — and we won't sell treatment that won't work.",
+      },
+    ],
+  },
+  {
+    heading: "After the job",
+    items: [
+      {
+        q: "What do you do with the wood?",
+        a: "Depends on what you want. We can leave logs cut to firewood length on your property, haul everything off to be turned into mulch or biomass, or some combination. Nothing usable goes to a landfill — chips become mulch, big rounds become firewood.",
+      },
+      {
+        q: "Do I need to be home when you do the work?",
+        a: "Usually no, once we've quoted the job and you've agreed. We just need access to the property and a way to reach you if a question comes up. We'll send photos when the job is done.",
+      },
+      {
+        q: "What about my insurance — should I file a claim if a tree took out my fence?",
+        a: "If a storm did the damage, yes, your homeowners' policy almost certainly covers it. We can document everything and provide an itemized estimate suitable for your adjuster. If you brought us in to remove a tree before something happened, that's usually not a covered expense.",
+      },
+    ],
+  },
+];
+
+// Flatten for the FAQPage JSON-LD schema below.
+const flatFaqs = groups.flatMap((g) => g.items);
+const faqSchema = site.published
+  ? {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: flatFaqs.map((f) => ({
+        "@type": "Question",
+        name: f.q,
+        acceptedAnswer: { "@type": "Answer", text: f.a },
+      })),
+    }
+  : null;
+---
+
+<BaseLayout
+  title="FAQ"
+  description="Common questions about tree care, quotes, scheduling, and emergencies — answered honestly by Titan Arbor Solutions."
+>
+  <section class="bg-arbor-800 text-cream py-16 sm:py-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <p class="text-sm uppercase tracking-widest text-arbor-100 mb-3">Frequently Asked</p>
+      <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight">
+        Honest answers.
+      </h1>
+      <p class="mt-6 text-lg sm:text-xl text-arbor-100 max-w-2xl">
+        The questions Diego gets most often. If yours isn't here, just call <a href={telHref(site.phonePrimary)} class="underline underline-offset-4 hover:text-cream">{site.phonePrimary}</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-12 sm:py-16 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mx-auto space-y-12">
+      {groups.map((group) => (
+        <div>
+          <h2 class="text-sm uppercase tracking-widest text-arbor-800 font-semibold mb-4">{group.heading}</h2>
+          <div class="space-y-3">
+            {group.items.map((item) => (
+              <details class="group bg-white border border-arbor-800/10 rounded-2xl shadow-sm overflow-hidden">
+                <summary class="cursor-pointer list-none flex items-start justify-between gap-4 px-5 sm:px-6 py-4 hover:bg-arbor-100/30 transition">
+                  <span class="font-semibold text-arbor-900 text-base sm:text-lg">{item.q}</span>
+                  <svg class="w-5 h-5 text-arbor-800 shrink-0 mt-1 transition-transform group-open:rotate-45" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="12" y1="5" x2="12" y2="19"/>
+                    <line x1="5" y1="12" x2="19" y2="12"/>
+                  </svg>
+                </summary>
+                <div class="px-5 sm:px-6 pb-5 text-arbor-900/80 leading-relaxed border-t border-arbor-800/10">
+                  <p class="pt-4">{item.a}</p>
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <CTA variant="compact" heading="Still have a question?" body="Diego will tell you straight up, no sales pitch." />
+
+  {faqSchema && (
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  )}
+</BaseLayout>

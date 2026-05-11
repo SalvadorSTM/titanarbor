@@ -1,0 +1,85 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { site, mailHref } from "../lib/site";
+
+const updated = "May 11, 2026";
+---
+
+<BaseLayout
+  title="Terms of Service"
+  description="Terms governing use of the Titan Arbor Solutions website."
+>
+  <section class="bg-arbor-800 text-cream py-16 sm:py-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <p class="text-sm uppercase tracking-widest text-arbor-100 mb-3">Legal</p>
+      <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight">Terms of Service</h1>
+      <p class="mt-6 text-lg text-arbor-100">Last updated: {updated}</p>
+    </div>
+  </section>
+
+  <section class="py-12 sm:py-16 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mx-auto prose-content">
+
+      <h2>What this page covers</h2>
+      <p>
+        These terms govern your use of <a href={site.url}>titanarbor.com</a> — the website itself. They do not constitute the contract for tree-care services we perform. When we agree to do work for you, that's a separate written agreement (your quote / signed estimate) that controls the work, the price, the timing, and any warranties.
+      </p>
+
+      <h2>About us</h2>
+      <p>
+        Titan Arbor Solutions is a Georgia limited liability company. Our principal place of business is in {site.legal.state}. You can reach us at <a href={`tel:${site.phonePrimary.replace(/\D/g, "")}`}>{site.phonePrimary}</a> or <a href={mailHref(site.email)}>{site.email}</a>.
+      </p>
+
+      <h2>Information on this site</h2>
+      <p>
+        We try to keep the information here accurate, but the site is a marketing site, not a contract. Prices, scheduling, and the specifics of any job are determined when we meet on-site, look at the tree, and give you a written quote. Anything that contradicts a signed quote — the quote wins.
+      </p>
+      <p>
+        Photos on this site include stock photography used illustratively. They do not depict specific jobs we have completed unless we say so.
+      </p>
+
+      <h2>No professional advice</h2>
+      <p>
+        Content on this site about tree care, diseases, pruning, etc., is general information based on our experience. It is not a substitute for an on-site assessment by a qualified arborist. If a tree on your property is hazardous, please call us or another professional — do not rely on a website to make that call.
+      </p>
+
+      <h2>Free quotes are free</h2>
+      <p>
+        When we say "free quotes," we mean it. A quote does not create an obligation for you to hire us. We don't bill for the visit, the assessment, or the proposal. If you decide to use someone else, we wish you well.
+      </p>
+
+      <h2>Use of the website</h2>
+      <p>
+        You're welcome to read this site, share links to it, and recommend us. Don't scrape it for AI training, copy the photography for your own commercial use, or impersonate the business. Standard internet manners apply.
+      </p>
+
+      <h2>External links</h2>
+      <p>
+        We occasionally link to other websites for context (industry standards bodies, mapping services, etc.). We don't control those sites and aren't responsible for their content.
+      </p>
+
+      <h2>Limitations</h2>
+      <p>
+        This website is provided "as is." We don't guarantee it will be available without interruption, free of errors, or that the information on it is current to the minute. We host the site on GitHub Pages, which is generally reliable but not infallible.
+      </p>
+      <p>
+        To the maximum extent permitted by Georgia law, our liability for any issue arising from the website itself is limited to the amount you paid to use it — which is zero.
+      </p>
+
+      <h2>Governing law</h2>
+      <p>
+        These terms are governed by the laws of the State of Georgia. Any dispute about the website (not about work we perform — that's covered by your service agreement) goes to courts located in Georgia.
+      </p>
+
+      <h2>Changes</h2>
+      <p>
+        We may update these terms occasionally. The "Last updated" date at the top will change when we do. Material changes — anything that would affect your rights — we'll note clearly.
+      </p>
+
+      <h2>Contact</h2>
+      <p>
+        Questions about these terms — call <a href={`tel:${site.phonePrimary.replace(/\D/g, "")}`}>{site.phonePrimary}</a> or email <a href={mailHref(site.email)}>{site.email}</a>.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

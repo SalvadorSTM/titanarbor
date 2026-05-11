@@ -1,0 +1,80 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { site, mailHref } from "../lib/site";
+
+const updated = "May 11, 2026";
+---
+
+<BaseLayout
+  title="Privacy Policy"
+  description="How Titan Arbor Solutions handles your information."
+>
+  <section class="bg-arbor-800 text-cream py-16 sm:py-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <p class="text-sm uppercase tracking-widest text-arbor-100 mb-3">Legal</p>
+      <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight">Privacy Policy</h1>
+      <p class="mt-6 text-lg text-arbor-100">Last updated: {updated}</p>
+    </div>
+  </section>
+
+  <section class="py-12 sm:py-16 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mx-auto prose-content">
+      <h2>The short version</h2>
+      <p>
+        Titan Arbor Solutions runs a simple business website. We don't sell anything online, we don't track you, we don't run ad networks, and we don't collect data about you. The only way we'd ever have your personal information is if you called us, emailed us, or hired us — and we use that information only to do the job and follow up.
+      </p>
+
+      <h2>What information we have, and how we got it</h2>
+      <p>
+        <strong>If you called or texted us:</strong> we have your phone number (from the call log on Diego's phone) and whatever you told us during the call. We use this to schedule, quote, do the work, follow up, and answer questions later. We don't add you to a marketing list.
+      </p>
+      <p>
+        <strong>If you emailed us:</strong> we have your email address and the contents of your email. Same rules — used to reply and do the work, not for marketing.
+      </p>
+      <p>
+        <strong>If you hired us:</strong> in addition to the above, we keep job records (address, what work was done, what was paid) for tax and accounting purposes, as required by Georgia and federal law. Diego's accountant has access to summary financial information; nobody else does.
+      </p>
+      <p>
+        <strong>If you just visited this website:</strong> we don't collect anything personal. The site is hosted on GitHub Pages, which logs basic technical information (your IP address, browser, page visited) to operate the service — that's standard for any website. We don't run analytics, ad pixels, social trackers, or cookies of our own.
+      </p>
+
+      <h2>What we share with others</h2>
+      <p>
+        We don't sell, rent, or trade your personal information to anyone. The only times we'd share it:
+      </p>
+      <ul>
+        <li>With Diego's accountant, for legitimate business accounting</li>
+        <li>With an insurance carrier, if a claim involves your job</li>
+        <li>If required by law (subpoena, court order)</li>
+      </ul>
+
+      <h2>How long we keep it</h2>
+      <p>
+        Job records (invoices, addresses, what was done) are kept for at least seven years for tax purposes, then disposed of. Casual phone and email contacts that don't lead to work are kept only as long as they're useful, then forgotten.
+      </p>
+
+      <h2>Your choices</h2>
+      <p>
+        You can ask us at any time what information we have about you, ask us to update it, or ask us to delete what we can legally delete. Email <a href={mailHref(site.email)}>{site.email}</a> and Diego will respond.
+      </p>
+      <p>
+        Note: we may not be able to delete records we're legally required to keep (like invoices for completed work), but anything beyond what's legally required, we'll clear out.
+      </p>
+
+      <h2>Children</h2>
+      <p>
+        Our business doesn't market to or serve children under 13. We don't knowingly collect information from them.
+      </p>
+
+      <h2>Changes to this policy</h2>
+      <p>
+        If we ever start using analytics, a contact form, or anything else that handles personal data differently, we'll update this page first and note the change at the top. We won't quietly start collecting data we don't currently collect.
+      </p>
+
+      <h2>Contact</h2>
+      <p>
+        Questions about this policy or how your information is handled — call <a href={`tel:${site.phonePrimary.replace(/\D/g, "")}`}>{site.phonePrimary}</a> or email <a href={mailHref(site.email)}>{site.email}</a>.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

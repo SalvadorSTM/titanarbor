@@ -11,11 +11,18 @@ import { dirname, join } from "node:path";
 const here = dirname(fileURLToPath(import.meta.url));
 const root = join(here, "..");
 const publicDir = join(root, "public");
-const logo = join(publicDir, "logo.png");
+// Source-of-truth logo lives in src/assets/ at full resolution so
+// Astro's image pipeline can use it. We also write a resized copy
+// to public/logo.png for the canonical share URL + JSON-LD logo
+// references (which don't go through Astro).
+const logo = join(root, "src", "assets", "logo.png");
 
 const arborGreen = { r: 31, g: 77, b: 43 };
 const arborGreenDark = "#143119";
 const cream = "#f7f5ee";
+
+console.log("Writing canonical public/logo.png (600x600)…");
+await sharp(logo).resize(600, 600).png({ compressionLevel: 9 }).toFile(join(publicDir, "logo.png"));
 
 console.log("Generating apple-touch-icon (180x180)…");
 await sharp(logo).resize(180, 180).png().toFile(join(publicDir, "apple-touch-icon.png"));

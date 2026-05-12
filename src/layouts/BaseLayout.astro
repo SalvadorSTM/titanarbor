@@ -33,7 +33,7 @@ const jsonLd = site.published
       "@id": `${site.url}/#business`,
       name: site.name,
       image: ogImage,
-      logo: ogImage,
+      logo: new URL("/logo.png", site.url).toString(),
       url: site.url,
       telephone: telE164(site.phonePrimary),
       email: site.email,

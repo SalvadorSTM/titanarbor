@@ -6,7 +6,7 @@ export const site = {
   description:
     "Locally owned tree care company in Georgia. Tree removal, trimming, pruning, stump grinding, debris hauling, disease diagnosis, and 24-hour emergency storm response.",
   url: "https://titanarbor.com",
-  phonePrimary: "478-268-8020",
+  phonePrimary: "478-266-8020",
   phoneBackup: "803-845-8364",
   email: "diego@titanarbor.com",
   hours: "Mon–Sat, 7am–7pm · 24-hour emergency response",

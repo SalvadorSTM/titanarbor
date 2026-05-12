@@ -75,7 +75,7 @@ const svgText = `
   <!-- Pill / CTA -->
   <g transform="translate(0, 450)">
     <rect x="0" y="0" width="260" height="56" rx="28" fill="#f7f5ee"/>
-    <text x="30" y="36" class="pill">CALL 478-268-8020</text>
+    <text x="30" y="36" class="pill">CALL 478-266-8020</text>
   </g>
 </svg>
 `.trim();

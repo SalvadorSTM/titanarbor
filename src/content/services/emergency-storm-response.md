@@ -9,7 +9,7 @@ heroEyebrow: Emergency
 
 ## When the wind brings one down
 
-A tree on the house, the car, the fence, the driveway, or hung up dangerously in another tree — these don't wait for business hours. Diego is on call 24/7 for storm work. Call **478-268-8020** any hour.
+A tree on the house, the car, the fence, the driveway, or hung up dangerously in another tree — these don't wait for business hours. Diego is on call 24/7 for storm work. Call **478-266-8020** any hour.
 
 ## What we prioritize, in this order
 

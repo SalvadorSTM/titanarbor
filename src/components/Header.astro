@@ -45,18 +45,14 @@ const isActive = (href: string) => {
         {nav.map((item) => (
           <a
             href={item.href}
-            class="group flex items-center h-full px-1"
+            class:list={[
+              "flex items-center h-full px-4 text-sm font-medium transition",
+              isActive(item.href)
+                ? "text-arbor-800 bg-arbor-800/10"
+                : "text-arbor-900 hover:text-arbor-800 hover:bg-arbor-800/5",
+            ]}
           >
-            <span
-              class:list={[
-                "px-4 py-2 rounded-md text-sm font-medium transition",
-                isActive(item.href)
-                  ? "text-arbor-800 bg-arbor-800/10"
-                  : "text-arbor-900 group-hover:text-arbor-800 group-hover:bg-arbor-800/5",
-              ]}
-            >
-              {item.label}
-            </span>
+            {item.label}
           </a>
         ))}
       </nav>

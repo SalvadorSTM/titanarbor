@@ -27,103 +27,53 @@ import contactHero from "../assets/images/contact.jpg";
         Get a quote, or just ask.
       </h1>
       <p class="mt-6 text-lg sm:text-xl text-arbor-100 max-w-2xl mx-auto">
-        Fill in the form below for a free quote, or call any time. Diego picks up; if he can't, leave a voicemail and you'll hear back the same day.
+        Request a free quote online, or call any time. Diego picks up; if he can't, leave a voicemail and you'll hear back the same day.
       </p>
     </div>
   </section>
 
   <section class="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-arbor-100/30">
     <div class="max-w-3xl mx-auto">
-      <div class="text-center mb-10">
+      <div class="text-center mb-8">
         <p class="text-sm uppercase tracking-widest text-arbor-800 mb-3 font-semibold">Free quote</p>
         <h2 class="text-3xl sm:text-4xl font-bold text-arbor-900 tracking-tight">Request a free quote</h2>
         <p class="mt-3 text-arbor-900/70 max-w-2xl mx-auto">
-          Fill in the basics. Diego will reach out within 24 hours to schedule the on-site assessment.
+          Tell us about your trees in a few questions. Diego reviews every request and follows up within 24 hours.
           For active emergencies, call <a href={telHref(site.phonePrimary)} class="font-semibold underline underline-offset-4 hover:text-arbor-700">{site.phonePrimary}</a> directly.
         </p>
       </div>
 
-      <form
-        action="https://formsubmit.co/diego@titanarbor.com"
-        method="POST"
-        class="bg-white rounded-2xl p-6 md:p-8 border border-arbor-800/15 shadow-sm space-y-5"
-      >
-        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
-        <input type="hidden" name="_subject" value="New quote request — titanarbor.com" />
-        <input type="hidden" name="_template" value="table" />
-        <input type="hidden" name="_captcha" value="false" />
-        <input type="hidden" name="_next" value="https://titanarbor.com/thanks/" />
-
-        <div class="grid sm:grid-cols-2 gap-5">
-          <div>
-            <label for="name" class="block text-sm font-semibold text-arbor-900 mb-1.5">Full name <span class="text-arbor-700">*</span></label>
-            <input id="name" name="name" type="text" required autocomplete="name"
-              class="w-full rounded-xl border border-arbor-800/20 bg-cream/30 px-4 py-3 text-sm text-arbor-900 focus:outline-none focus:ring-2 focus:ring-arbor-800 focus:border-arbor-800" />
-          </div>
-          <div>
-            <label for="phone" class="block text-sm font-semibold text-arbor-900 mb-1.5">Phone <span class="text-arbor-700">*</span></label>
-            <input id="phone" name="phone" type="tel" required autocomplete="tel"
-              class="w-full rounded-xl border border-arbor-800/20 bg-cream/30 px-4 py-3 text-sm text-arbor-900 focus:outline-none focus:ring-2 focus:ring-arbor-800 focus:border-arbor-800" />
-          </div>
+      <div class="bg-white rounded-2xl p-8 md:p-10 border border-arbor-800/15 shadow-sm text-center">
+        <div class="w-16 h-16 mx-auto rounded-full bg-arbor-800/10 text-arbor-800 flex items-center justify-center mb-5">
+          <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/>
+            <line x1="16" y1="17" x2="8" y2="17"/>
+            <polyline points="10 9 9 9 8 9"/>
+          </svg>
         </div>
-
-        <div class="grid sm:grid-cols-2 gap-5">
-          <div>
-            <label for="email" class="block text-sm font-semibold text-arbor-900 mb-1.5">Email</label>
-            <input id="email" name="email" type="email" autocomplete="email"
-              class="w-full rounded-xl border border-arbor-800/20 bg-cream/30 px-4 py-3 text-sm text-arbor-900 focus:outline-none focus:ring-2 focus:ring-arbor-800 focus:border-arbor-800" />
-          </div>
-          <div>
-            <label for="address" class="block text-sm font-semibold text-arbor-900 mb-1.5">Property address <span class="text-arbor-700">*</span></label>
-            <input id="address" name="address" type="text" required autocomplete="street-address"
-              class="w-full rounded-xl border border-arbor-800/20 bg-cream/30 px-4 py-3 text-sm text-arbor-900 focus:outline-none focus:ring-2 focus:ring-arbor-800 focus:border-arbor-800" />
-          </div>
-        </div>
-
-        <div class="grid sm:grid-cols-2 gap-5">
-          <div>
-            <label for="service" class="block text-sm font-semibold text-arbor-900 mb-1.5">Service needed <span class="text-arbor-700">*</span></label>
-            <select id="service" name="service" required
-              class="w-full rounded-xl border border-arbor-800/20 bg-cream/30 px-4 py-3 text-sm text-arbor-900 focus:outline-none focus:ring-2 focus:ring-arbor-800 focus:border-arbor-800">
-              <option value="">Select a service</option>
-              <option value="Tree Removal">Tree Removal</option>
-              <option value="Tree Trimming">Tree Trimming</option>
-              <option value="Pruning">Pruning</option>
-              <option value="Stump Grinding">Stump Grinding</option>
-              <option value="Debris Hauling">Debris Hauling</option>
-              <option value="Disease &amp; Pest Diagnosis">Disease &amp; Pest Diagnosis</option>
-              <option value="Emergency Storm Response">Emergency Storm Response</option>
-              <option value="Not sure yet">Not sure — need help diagnosing</option>
-              <option value="Multiple / Other">Multiple services / Other</option>
-            </select>
-          </div>
-          <div>
-            <label for="contact_method" class="block text-sm font-semibold text-arbor-900 mb-1.5">Preferred contact method</label>
-            <select id="contact_method" name="contact_method"
-              class="w-full rounded-xl border border-arbor-800/20 bg-cream/30 px-4 py-3 text-sm text-arbor-900 focus:outline-none focus:ring-2 focus:ring-arbor-800 focus:border-arbor-800">
-              <option value="Phone call">Phone call</option>
-              <option value="Text message">Text message</option>
-              <option value="Email">Email</option>
-            </select>
-          </div>
-        </div>
-
-        <div>
-          <label for="description" class="block text-sm font-semibold text-arbor-900 mb-1.5">Tell us about the tree(s)</label>
-          <textarea id="description" name="description" rows="4"
-            placeholder="Number of trees, species if you know, what you're hoping for, urgency, anything else useful..."
-            class="w-full rounded-xl border border-arbor-800/20 bg-cream/30 px-4 py-3 text-sm text-arbor-900 focus:outline-none focus:ring-2 focus:ring-arbor-800 focus:border-arbor-800 resize-none"></textarea>
-        </div>
-
-        <button type="submit"
-          class="w-full rounded-full bg-arbor-800 text-cream px-8 py-4 font-semibold text-lg hover:bg-arbor-700 transition shadow-lg">
-          Request a free quote
-        </button>
-
-        <p class="text-center text-xs text-arbor-900/60">
-          We respond within 24 hours. No obligation, no upsells.
+        <h3 class="text-xl sm:text-2xl font-bold text-arbor-900 mb-3">Open the quote form</h3>
+        <p class="text-arbor-900/70 mb-6 max-w-xl mx-auto leading-relaxed">
+          Takes about 2 minutes. Add photos if a tree is leaning, dropping limbs, or hard to access — it helps Diego give a more accurate quote without a second visit.
         </p>
-      </form>
+        <a
+          href={site.quoteUrl}
+          target="_blank"
+          rel="noopener"
+          class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-arbor-800 text-cream rounded-full font-semibold text-lg hover:bg-arbor-700 transition shadow-lg"
+        >
+          Request a free quote
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+            <polyline points="15 3 21 3 21 9"/>
+            <line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+        </a>
+        <p class="text-xs text-arbor-900/60 mt-4">
+          Opens in a new window. No obligation, no upsells.
+        </p>
+      </div>
     </div>
   </section>
 

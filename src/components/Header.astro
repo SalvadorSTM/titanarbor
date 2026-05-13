@@ -15,7 +15,9 @@ const nav = [
 const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
 const isActive = (href: string) => {
   if (href === "/#services") {
-    return currentPath === "/" || currentPath.startsWith("/services");
+    // Only "Services" tab counts as active on service detail pages,
+    // not on the home page itself (visiting / means "Home" is active).
+    return currentPath.startsWith("/services");
   }
   const h = href.replace(/\/$/, "") || "/";
   return h === "/" ? currentPath === "/" : currentPath.startsWith(h);

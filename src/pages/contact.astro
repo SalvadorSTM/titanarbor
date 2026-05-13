@@ -3,6 +3,8 @@ import { Image } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { site, telHref, mailHref } from "../lib/site";
 import contactHero from "../assets/images/contact.jpg";
+
+const mapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${site.legal.streetAddress}, ${site.legal.city}, ${site.legal.stateAbbr} ${site.legal.postalCode}`)}`;
 ---
 
 <BaseLayout
@@ -33,9 +35,90 @@ import contactHero from "../assets/images/contact.jpg";
   </section>
 
   <section class="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 bg-arbor-100/30">
-    <div class="max-w-3xl mx-auto">
-      <div class="bg-white rounded-2xl p-4 sm:p-6 md:p-8 border border-arbor-800/15 shadow-sm">
-        <!-- Jobber Work Request embed: form is hosted by Jobber, leads flow into Diego's pipeline -->
+    <div class="max-w-6xl mx-auto grid lg:grid-cols-5 gap-6 lg:gap-8 items-start">
+
+      <!-- Left: contact info panel -->
+      <aside class="lg:col-span-2 bg-white rounded-2xl p-6 sm:p-8 border border-arbor-800/15 shadow-sm space-y-6">
+
+        <div>
+          <p class="text-xs uppercase tracking-widest text-arbor-800 font-semibold mb-1">Primary line</p>
+          <a href={telHref(site.phonePrimary)} class="block text-3xl sm:text-4xl font-bold text-arbor-900 hover:text-arbor-700 transition leading-tight">
+            {site.phonePrimary}
+          </a>
+          <p class="text-xs text-arbor-900/60 mt-1">Diego answers. Tap to call.</p>
+        </div>
+
+        <div>
+          <p class="text-xs uppercase tracking-widest text-arbor-800 font-semibold mb-1">Backup line</p>
+          <a href={telHref(site.phoneBackup)} class="block text-xl sm:text-2xl font-bold text-arbor-900 hover:text-arbor-700 transition">
+            {site.phoneBackup}
+          </a>
+        </div>
+
+        <div>
+          <p class="text-xs uppercase tracking-widest text-arbor-800 font-semibold mb-1">Email</p>
+          <a href={mailHref(site.email, "Tree care inquiry")} class="block text-base sm:text-lg font-semibold text-arbor-900 hover:text-arbor-700 transition break-all">
+            {site.email}
+          </a>
+        </div>
+
+        <div class="border-t border-arbor-800/10 pt-6">
+          <p class="text-xs uppercase tracking-widest text-arbor-800 font-semibold mb-3">Hours</p>
+          <ul class="space-y-1.5">
+            {site.hoursDetailed.map((h) => {
+              const isClosed = h.time === "Closed";
+              return (
+                <li class="flex items-baseline justify-between gap-3 text-sm">
+                  <span class={isClosed ? "text-arbor-900/60" : "text-arbor-900 font-medium"}>{h.day}</span>
+                  <span class={isClosed ? "text-red-700 font-bold uppercase text-xs tracking-wider" : "text-arbor-900/80"}>{h.time}</span>
+                </li>
+              );
+            })}
+          </ul>
+          <p class="text-arbor-800 font-semibold text-xs mt-4 leading-relaxed">
+            <span class="inline-block w-2 h-2 rounded-full bg-arbor-800 animate-pulse mr-1.5 align-middle"></span>
+            24-hour emergency line for storm damage
+          </p>
+        </div>
+
+        <div class="border-t border-arbor-800/10 pt-6">
+          <p class="text-xs uppercase tracking-widest text-arbor-800 font-semibold mb-2">Address</p>
+          <address class="not-italic text-sm text-arbor-900 leading-relaxed">
+            {site.legal.streetAddress}<br/>
+            {site.legal.city}, {site.legal.stateAbbr} {site.legal.postalCode}
+          </address>
+          <a
+            href={mapUrl}
+            target="_blank"
+            rel="noopener"
+            class="inline-flex items-center gap-1 mt-2 text-arbor-800 font-semibold text-xs hover:gap-2 transition-all"
+          >
+            Open in Google Maps
+            <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+              <polyline points="15 3 21 3 21 9"/>
+              <line x1="10" y1="14" x2="21" y2="3"/>
+            </svg>
+          </a>
+        </div>
+
+        <div class="border-t border-arbor-800/10 pt-6">
+          <p class="text-xs uppercase tracking-widest text-arbor-800 font-semibold mb-2">Service area</p>
+          <p class="text-sm text-arbor-900/80 leading-relaxed">
+            Metro Atlanta &mdash; Fulton, DeKalb, and Cobb counties.
+          </p>
+          <a href="/service-areas/" class="inline-flex items-center gap-1 mt-2 text-arbor-800 font-semibold text-xs hover:gap-2 transition-all">
+            See all 13 cities we serve
+            <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="5" y1="12" x2="19" y2="12"/>
+              <polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </a>
+        </div>
+      </aside>
+
+      <!-- Right: Jobber form embed -->
+      <div class="lg:col-span-3 bg-white rounded-2xl p-4 sm:p-6 md:p-8 border border-arbor-800/15 shadow-sm">
         <div id="7da855e7-9b31-44ee-bec8-2e8fbe6d7d51-4723911"></div>
         <link rel="stylesheet" href="https://d3ey4dbjkt2f6s.cloudfront.net/assets/external/work_request_embed.css" media="screen" />
         <script
@@ -53,100 +136,7 @@ import contactHero from "../assets/images/contact.jpg";
           or call <a href={telHref(site.phonePrimary)} class="text-arbor-800 font-semibold underline underline-offset-4 hover:text-arbor-700">{site.phonePrimary}</a>.
         </p>
       </div>
-    </div>
-  </section>
 
-  <section class="py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
-    <div class="max-w-5xl mx-auto">
-      <p class="text-center text-sm uppercase tracking-widest text-arbor-800 mb-3 font-semibold">Or contact us directly</p>
-    </div>
-    <div class="max-w-5xl mx-auto grid lg:grid-cols-3 gap-6">
-
-      <a href={telHref(site.phonePrimary)} class="group bg-arbor-800 text-cream rounded-2xl p-8 shadow-lg hover:bg-arbor-700 transition flex flex-col">
-        <div class="w-12 h-12 rounded-full bg-cream/15 flex items-center justify-center mb-4">
-          <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z"/>
-          </svg>
-        </div>
-        <p class="text-sm uppercase tracking-widest text-arbor-100 mb-2">Primary line</p>
-        <p class="text-3xl sm:text-4xl font-bold mb-2 group-hover:underline underline-offset-4">{site.phonePrimary}</p>
-        <p class="text-arbor-100/80 text-sm mt-auto">Diego answers. Tap to call.</p>
-      </a>
-
-      <a href={telHref(site.phoneBackup)} class="group bg-white border border-arbor-800/15 rounded-2xl p-8 shadow-sm hover:border-arbor-800/30 hover:shadow-lg transition flex flex-col">
-        <div class="w-12 h-12 rounded-full bg-arbor-800/10 text-arbor-800 flex items-center justify-center mb-4">
-          <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z"/>
-          </svg>
-        </div>
-        <p class="text-sm uppercase tracking-widest text-arbor-800 mb-2 font-semibold">Backup line</p>
-        <p class="text-3xl sm:text-4xl font-bold text-arbor-900 mb-2 group-hover:underline underline-offset-4">{site.phoneBackup}</p>
-        <p class="text-arbor-900/60 text-sm mt-auto">Try this if you can't reach the primary.</p>
-      </a>
-
-      <a href={mailHref(site.email, "Tree care inquiry")} class="group bg-white border border-arbor-800/15 rounded-2xl p-8 shadow-sm hover:border-arbor-800/30 hover:shadow-lg transition flex flex-col">
-        <div class="w-12 h-12 rounded-full bg-arbor-800/10 text-arbor-800 flex items-center justify-center mb-4">
-          <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-            <polyline points="22,6 12,13 2,6"/>
-          </svg>
-        </div>
-        <p class="text-sm uppercase tracking-widest text-arbor-800 mb-2 font-semibold">Email</p>
-        <p class="text-xl sm:text-2xl font-bold text-arbor-900 mb-2 break-all group-hover:underline underline-offset-4">{site.email}</p>
-        <p class="text-arbor-900/60 text-sm mt-auto">Best for photos, multi-tree quotes, non-urgent stuff.</p>
-      </a>
-    </div>
-  </section>
-
-  <section class="bg-white py-12 px-4 sm:px-6 lg:px-8">
-    <div class="max-w-5xl mx-auto grid sm:grid-cols-2 lg:grid-cols-3 gap-8 text-center sm:text-left">
-      <div>
-        <p class="text-sm uppercase tracking-widest text-arbor-800 mb-3 font-semibold">Hours</p>
-        <ul class="text-arbor-900 space-y-1">
-          {site.hoursDetailed.map((h) => (
-            <li class="flex flex-col sm:flex-row sm:items-baseline sm:gap-3">
-              <span class="font-semibold text-sm sm:w-32 sm:shrink-0">{h.days}</span>
-              <span class="text-arbor-900/80">{h.time}</span>
-            </li>
-          ))}
-        </ul>
-        <p class="text-arbor-800 font-semibold mt-3 text-sm">24-hour emergency line for storm damage.</p>
-      </div>
-
-      <div>
-        <p class="text-sm uppercase tracking-widest text-arbor-800 mb-3 font-semibold">Address</p>
-        <address class="not-italic text-arbor-900 text-base leading-relaxed">
-          {site.legal.streetAddress}<br/>
-          {site.legal.city}, {site.legal.stateAbbr} {site.legal.postalCode}
-        </address>
-        <a
-          href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${site.legal.streetAddress}, ${site.legal.city}, ${site.legal.stateAbbr} ${site.legal.postalCode}`)}`}
-          target="_blank"
-          rel="noopener"
-          class="inline-flex items-center gap-1 mt-2 text-arbor-800 font-semibold text-sm hover:gap-2 transition-all"
-        >
-          Open in Google Maps
-          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-            <polyline points="15 3 21 3 21 9"/>
-            <line x1="10" y1="14" x2="21" y2="3"/>
-          </svg>
-        </a>
-      </div>
-
-      <div>
-        <p class="text-sm uppercase tracking-widest text-arbor-800 mb-3 font-semibold">Service area</p>
-        <p class="text-arbor-900 text-base leading-relaxed">
-          Atlanta and the surrounding metro &mdash; Fulton, DeKalb, and Cobb counties.
-        </p>
-        <a href="/service-areas/" class="inline-flex items-center gap-1 mt-2 text-arbor-800 font-semibold text-sm hover:gap-2 transition-all">
-          See full list
-          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <line x1="5" y1="12" x2="19" y2="12"/>
-            <polyline points="12 5 19 12 12 19"/>
-          </svg>
-        </a>
-      </div>
     </div>
   </section>
 </BaseLayout>

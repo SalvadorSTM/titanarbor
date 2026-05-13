@@ -41,18 +41,22 @@ const isActive = (href: string) => {
         </span>
       </a>
 
-      <nav class="hidden lg:flex items-center gap-1" aria-label="Primary">
+      <nav class="hidden lg:flex items-center h-full" aria-label="Primary">
         {nav.map((item) => (
           <a
             href={item.href}
-            class:list={[
-              "px-4 py-2 rounded-md text-sm font-medium transition",
-              isActive(item.href)
-                ? "text-arbor-800 bg-arbor-800/10"
-                : "text-arbor-900 hover:text-arbor-800 hover:bg-arbor-800/5",
-            ]}
+            class="group flex items-center h-full px-1"
           >
-            {item.label}
+            <span
+              class:list={[
+                "px-4 py-2 rounded-md text-sm font-medium transition",
+                isActive(item.href)
+                  ? "text-arbor-800 bg-arbor-800/10"
+                  : "text-arbor-900 group-hover:text-arbor-800 group-hover:bg-arbor-800/5",
+              ]}
+            >
+              {item.label}
+            </span>
           </a>
         ))}
       </nav>

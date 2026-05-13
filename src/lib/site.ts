@@ -10,7 +10,12 @@ export const site = {
   phonePrimary: "478-266-8020",
   phoneBackup: "803-845-8364",
   email: "diego@titanarbor.com",
-  hours: "Mon–Sat, 7am–7pm · 24-hour emergency response",
+  hours: "Mon–Fri 9 AM–6 PM · Sat 6 AM–4 PM · 24-hr emergency line",
+  hoursDetailed: [
+    { days: "Monday – Friday", time: "9:00 AM – 6:00 PM" },
+    { days: "Saturday", time: "6:00 AM – 4:00 PM" },
+    { days: "Sunday", time: "Closed" },
+  ],
   owner: {
     name: "Diego Zunun",
     role: "Owner & Lead Arborist",
@@ -20,6 +25,8 @@ export const site = {
     state: "Georgia",
     stateAbbr: "GA",
     city: "Atlanta",
+    streetAddress: "1304 St Clair Dr NE",
+    postalCode: "30329",
     entityType: "LLC",
     licensed: true,
     insured: true,

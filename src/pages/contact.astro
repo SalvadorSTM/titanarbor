@@ -99,22 +99,47 @@ import contactHero from "../assets/images/contact.jpg";
   </section>
 
   <section class="bg-white py-12 px-4 sm:px-6 lg:px-8">
-    <div class="max-w-3xl mx-auto grid sm:grid-cols-2 gap-8 text-center sm:text-left">
+    <div class="max-w-5xl mx-auto grid sm:grid-cols-2 lg:grid-cols-3 gap-8 text-center sm:text-left">
       <div>
-        <p class="text-sm uppercase tracking-widest text-arbor-800 mb-2 font-semibold">Hours</p>
-        <p class="text-arbor-900 text-lg leading-relaxed">
-          Monday – Saturday<br/>
-          7:00 AM – 7:00 PM
-        </p>
-        <p class="text-arbor-800 font-semibold mt-2">24-hour emergency line for storm damage.</p>
+        <p class="text-sm uppercase tracking-widest text-arbor-800 mb-3 font-semibold">Hours</p>
+        <ul class="text-arbor-900 space-y-1">
+          {site.hoursDetailed.map((h) => (
+            <li class="flex flex-col sm:flex-row sm:items-baseline sm:gap-3">
+              <span class="font-semibold text-sm sm:w-32 sm:shrink-0">{h.days}</span>
+              <span class="text-arbor-900/80">{h.time}</span>
+            </li>
+          ))}
+        </ul>
+        <p class="text-arbor-800 font-semibold mt-3 text-sm">24-hour emergency line for storm damage.</p>
       </div>
+
       <div>
-        <p class="text-sm uppercase tracking-widest text-arbor-800 mb-2 font-semibold">Service area</p>
-        <p class="text-arbor-900 text-lg leading-relaxed">
-          Atlanta and the surrounding metro.<br/>
-          Based in Georgia.
+        <p class="text-sm uppercase tracking-widest text-arbor-800 mb-3 font-semibold">Address</p>
+        <address class="not-italic text-arbor-900 text-base leading-relaxed">
+          {site.legal.streetAddress}<br/>
+          {site.legal.city}, {site.legal.stateAbbr} {site.legal.postalCode}
+        </address>
+        <a
+          href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${site.legal.streetAddress}, ${site.legal.city}, ${site.legal.stateAbbr} ${site.legal.postalCode}`)}`}
+          target="_blank"
+          rel="noopener"
+          class="inline-flex items-center gap-1 mt-2 text-arbor-800 font-semibold text-sm hover:gap-2 transition-all"
+        >
+          Open in Google Maps
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+            <polyline points="15 3 21 3 21 9"/>
+            <line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+        </a>
+      </div>
+
+      <div>
+        <p class="text-sm uppercase tracking-widest text-arbor-800 mb-3 font-semibold">Service area</p>
+        <p class="text-arbor-900 text-base leading-relaxed">
+          Atlanta and the surrounding metro &mdash; Fulton, DeKalb, and Cobb counties.
         </p>
-        <a href="/service-areas/" class="inline-flex items-center gap-1 mt-2 text-arbor-800 font-semibold hover:gap-2 transition-all">
+        <a href="/service-areas/" class="inline-flex items-center gap-1 mt-2 text-arbor-800 font-semibold text-sm hover:gap-2 transition-all">
           See full list
           <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <line x1="5" y1="12" x2="19" y2="12"/>

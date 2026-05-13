@@ -40,17 +40,25 @@ const jsonLd = site.published
       priceRange: "$$",
       address: {
         "@type": "PostalAddress",
+        streetAddress: site.legal.streetAddress,
         addressLocality: site.legal.city,
         addressRegion: site.legal.state,
+        postalCode: site.legal.postalCode,
         addressCountry: "US",
       },
       areaServed: serviceAreas.map((a) => ({ "@type": "City", name: a.name })),
       openingHoursSpecification: [
         {
           "@type": "OpeningHoursSpecification",
-          dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-          opens: "07:00",
-          closes: "19:00",
+          dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          opens: "09:00",
+          closes: "18:00",
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          dayOfWeek: ["Saturday"],
+          opens: "06:00",
+          closes: "16:00",
         },
       ],
       contactPoint: [

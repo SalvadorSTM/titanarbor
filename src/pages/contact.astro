@@ -27,12 +27,110 @@ import contactHero from "../assets/images/contact.jpg";
         Get a quote, or just ask.
       </h1>
       <p class="mt-6 text-lg sm:text-xl text-arbor-100 max-w-2xl mx-auto">
-        The fastest way to reach us is the phone. Diego picks up; if he can't, leave a voicemail and you'll hear back the same day.
+        Fill in the form below for a free quote, or call any time. Diego picks up; if he can't, leave a voicemail and you'll hear back the same day.
       </p>
     </div>
   </section>
 
+  <section class="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-arbor-100/30">
+    <div class="max-w-3xl mx-auto">
+      <div class="text-center mb-10">
+        <p class="text-sm uppercase tracking-widest text-arbor-800 mb-3 font-semibold">Free quote</p>
+        <h2 class="text-3xl sm:text-4xl font-bold text-arbor-900 tracking-tight">Request a free quote</h2>
+        <p class="mt-3 text-arbor-900/70 max-w-2xl mx-auto">
+          Fill in the basics. Diego will reach out within 24 hours to schedule the on-site assessment.
+          For active emergencies, call <a href={telHref(site.phonePrimary)} class="font-semibold underline underline-offset-4 hover:text-arbor-700">{site.phonePrimary}</a> directly.
+        </p>
+      </div>
+
+      <form
+        action="https://formsubmit.co/salvadort.martinez@gmail.com"
+        method="POST"
+        class="bg-white rounded-2xl p-6 md:p-8 border border-arbor-800/15 shadow-sm space-y-5"
+      >
+        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
+        <input type="hidden" name="_subject" value="New quote request — titanarbor.com" />
+        <input type="hidden" name="_template" value="table" />
+        <input type="hidden" name="_captcha" value="false" />
+        <input type="hidden" name="_next" value="https://titanarbor.com/thanks/" />
+
+        <div class="grid sm:grid-cols-2 gap-5">
+          <div>
+            <label for="name" class="block text-sm font-semibold text-arbor-900 mb-1.5">Full name <span class="text-arbor-700">*</span></label>
+            <input id="name" name="name" type="text" required autocomplete="name"
+              class="w-full rounded-xl border border-arbor-800/20 bg-cream/30 px-4 py-3 text-sm text-arbor-900 focus:outline-none focus:ring-2 focus:ring-arbor-800 focus:border-arbor-800" />
+          </div>
+          <div>
+            <label for="phone" class="block text-sm font-semibold text-arbor-900 mb-1.5">Phone <span class="text-arbor-700">*</span></label>
+            <input id="phone" name="phone" type="tel" required autocomplete="tel"
+              class="w-full rounded-xl border border-arbor-800/20 bg-cream/30 px-4 py-3 text-sm text-arbor-900 focus:outline-none focus:ring-2 focus:ring-arbor-800 focus:border-arbor-800" />
+          </div>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-5">
+          <div>
+            <label for="email" class="block text-sm font-semibold text-arbor-900 mb-1.5">Email</label>
+            <input id="email" name="email" type="email" autocomplete="email"
+              class="w-full rounded-xl border border-arbor-800/20 bg-cream/30 px-4 py-3 text-sm text-arbor-900 focus:outline-none focus:ring-2 focus:ring-arbor-800 focus:border-arbor-800" />
+          </div>
+          <div>
+            <label for="address" class="block text-sm font-semibold text-arbor-900 mb-1.5">Property address <span class="text-arbor-700">*</span></label>
+            <input id="address" name="address" type="text" required autocomplete="street-address"
+              class="w-full rounded-xl border border-arbor-800/20 bg-cream/30 px-4 py-3 text-sm text-arbor-900 focus:outline-none focus:ring-2 focus:ring-arbor-800 focus:border-arbor-800" />
+          </div>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-5">
+          <div>
+            <label for="service" class="block text-sm font-semibold text-arbor-900 mb-1.5">Service needed <span class="text-arbor-700">*</span></label>
+            <select id="service" name="service" required
+              class="w-full rounded-xl border border-arbor-800/20 bg-cream/30 px-4 py-3 text-sm text-arbor-900 focus:outline-none focus:ring-2 focus:ring-arbor-800 focus:border-arbor-800">
+              <option value="">Select a service</option>
+              <option value="Tree Removal">Tree Removal</option>
+              <option value="Tree Trimming">Tree Trimming</option>
+              <option value="Pruning">Pruning</option>
+              <option value="Stump Grinding">Stump Grinding</option>
+              <option value="Debris Hauling">Debris Hauling</option>
+              <option value="Disease &amp; Pest Diagnosis">Disease &amp; Pest Diagnosis</option>
+              <option value="Emergency Storm Response">Emergency Storm Response</option>
+              <option value="Not sure yet">Not sure — need help diagnosing</option>
+              <option value="Multiple / Other">Multiple services / Other</option>
+            </select>
+          </div>
+          <div>
+            <label for="contact_method" class="block text-sm font-semibold text-arbor-900 mb-1.5">Preferred contact method</label>
+            <select id="contact_method" name="contact_method"
+              class="w-full rounded-xl border border-arbor-800/20 bg-cream/30 px-4 py-3 text-sm text-arbor-900 focus:outline-none focus:ring-2 focus:ring-arbor-800 focus:border-arbor-800">
+              <option value="Phone call">Phone call</option>
+              <option value="Text message">Text message</option>
+              <option value="Email">Email</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label for="description" class="block text-sm font-semibold text-arbor-900 mb-1.5">Tell us about the tree(s)</label>
+          <textarea id="description" name="description" rows="4"
+            placeholder="Number of trees, species if you know, what you're hoping for, urgency, anything else useful..."
+            class="w-full rounded-xl border border-arbor-800/20 bg-cream/30 px-4 py-3 text-sm text-arbor-900 focus:outline-none focus:ring-2 focus:ring-arbor-800 focus:border-arbor-800 resize-none"></textarea>
+        </div>
+
+        <button type="submit"
+          class="w-full rounded-full bg-arbor-800 text-cream px-8 py-4 font-semibold text-lg hover:bg-arbor-700 transition shadow-lg">
+          Request a free quote
+        </button>
+
+        <p class="text-center text-xs text-arbor-900/60">
+          We respond within 24 hours. No obligation, no upsells.
+        </p>
+      </form>
+    </div>
+  </section>
+
   <section class="py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-5xl mx-auto">
+      <p class="text-center text-sm uppercase tracking-widest text-arbor-800 mb-3 font-semibold">Or contact us directly</p>
+    </div>
     <div class="max-w-5xl mx-auto grid lg:grid-cols-3 gap-6">
 
       <a href={telHref(site.phonePrimary)} class="group bg-arbor-800 text-cream rounded-2xl p-8 shadow-lg hover:bg-arbor-700 transition flex flex-col">

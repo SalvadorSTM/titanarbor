@@ -1,0 +1,48 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { site, telHref } from "../lib/site";
+---
+
+<BaseLayout
+  title="Quote request received"
+  description="We received your quote request — Diego will be in touch within 24 hours."
+>
+  <section class="bg-arbor-800 text-cream py-20 sm:py-28">
+    <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-cream/15 mb-6">
+        <svg class="w-10 h-10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+      </div>
+      <p class="text-sm uppercase tracking-widest text-arbor-100 mb-3">Got it</p>
+      <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight drop-shadow-lg">
+        Thanks — we'll be in touch.
+      </h1>
+      <p class="mt-6 text-lg text-arbor-100 leading-relaxed">
+        Diego will review your request and reach out within 24 hours to schedule the on-site assessment. For active emergencies or anything urgent, call
+        <a href={telHref(site.phonePrimary)} class="underline underline-offset-4 hover:text-cream font-semibold">{site.phonePrimary}</a>
+        any hour.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-center text-sm uppercase tracking-widest text-arbor-800 font-semibold mb-6">While you wait</h2>
+      <div class="grid sm:grid-cols-3 gap-4">
+        <a href="/" class="group bg-white border border-arbor-800/15 rounded-2xl p-6 hover:border-arbor-800/40 hover:shadow-lg transition shadow-sm text-center">
+          <p class="font-semibold text-arbor-900 mb-1">Home</p>
+          <p class="text-sm text-arbor-900/70">Back to the start</p>
+        </a>
+        <a href="/about/" class="group bg-white border border-arbor-800/15 rounded-2xl p-6 hover:border-arbor-800/40 hover:shadow-lg transition shadow-sm text-center">
+          <p class="font-semibold text-arbor-900 mb-1">About</p>
+          <p class="text-sm text-arbor-900/70">Meet Diego</p>
+        </a>
+        <a href="/faq/" class="group bg-white border border-arbor-800/15 rounded-2xl p-6 hover:border-arbor-800/40 hover:shadow-lg transition shadow-sm text-center">
+          <p class="font-semibold text-arbor-900 mb-1">FAQ</p>
+          <p class="text-sm text-arbor-900/70">Common questions</p>
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

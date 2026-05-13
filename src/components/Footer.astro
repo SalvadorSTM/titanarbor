@@ -72,8 +72,23 @@ const year = new Date().getFullYear();
             {site.email}
           </a>
         </li>
-        <li class="text-arbor-100/80 text-xs pt-2">
-          {site.hours}
+        <li class="pt-3 border-t border-arbor-100/10 mt-2">
+          <p class="text-cream text-xs uppercase tracking-wider font-semibold mb-2">Hours</p>
+          <ul class="space-y-1">
+            {site.hoursDetailed.map((h) => {
+              const isClosed = h.time === "Closed";
+              return (
+                <li class="flex items-baseline justify-between gap-3 text-xs">
+                  <span class={isClosed ? "text-arbor-100/60" : "text-arbor-100/90"}>{h.day}</span>
+                  <span class={isClosed ? "text-red-300 font-bold uppercase tracking-wider" : "text-arbor-100/70"}>{h.time}</span>
+                </li>
+              );
+            })}
+          </ul>
+          <p class="text-cream text-xs font-semibold mt-2 leading-relaxed">
+            <span class="inline-block w-1.5 h-1.5 rounded-full bg-cream animate-pulse mr-1.5 align-middle"></span>
+            24-hour emergency line
+          </p>
         </li>
       </ul>
     </div>

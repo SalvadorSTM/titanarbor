@@ -58,35 +58,37 @@ await writeFile(join(publicDir, "site.webmanifest"), JSON.stringify(manifest, nu
 
 console.log("Generating Open Graph share card (1200x630)…");
 
-// SVG composition for the text portion of the OG card.
-// Right-side text block: brand + tagline + phone CTA.
+// Hierarchy: BRAND (biggest, 2 lines) → PHONE → trust line → tagline.
+// All elements centered within the right text column for a deliberate,
+// poster-like composition. Vertical rhythm fills the full card height.
 const svgText = `
-<svg width="700" height="630" xmlns="http://www.w3.org/2000/svg">
+<svg width="720" height="630" xmlns="http://www.w3.org/2000/svg">
   <style>
-    .brand { font: 800 64px system-ui, -apple-system, "Segoe UI", sans-serif; fill: #f7f5ee; letter-spacing: -1px; }
-    .sub   { font: 400 24px system-ui, -apple-system, "Segoe UI", sans-serif; fill: #e8efe6; }
-    .tagline { font: 600 32px system-ui, -apple-system, "Segoe UI", sans-serif; fill: #f7f5ee; letter-spacing: -0.5px; }
-    .pill { font: 700 20px system-ui, -apple-system, "Segoe UI", sans-serif; fill: #143119; }
+    .brand   { font: 900 92px system-ui, -apple-system, "Segoe UI", sans-serif; fill: #f7f5ee; letter-spacing: -3px; text-anchor: middle; }
+    .phone   { font: 800 76px system-ui, -apple-system, "Segoe UI", sans-serif; fill: #f7f5ee; letter-spacing: 2px; text-anchor: middle; }
+    .trust   { font: 700 30px system-ui, -apple-system, "Segoe UI", sans-serif; fill: #cdddc4; letter-spacing: 2px; text-anchor: middle; }
+    .tagline { font: 500 28px system-ui, -apple-system, "Segoe UI", sans-serif; fill: #a8baa0; letter-spacing: 0.5px; text-anchor: middle; }
   </style>
-  <text x="0" y="260" class="sub">TITAN ARBOR SOLUTIONS</text>
-  <text x="0" y="345" class="tagline">Professional tree care</text>
-  <text x="0" y="395" class="tagline">for metro Atlanta.</text>
 
-  <!-- Pill / CTA -->
-  <g transform="translate(0, 450)">
-    <rect x="0" y="0" width="260" height="56" rx="28" fill="#f7f5ee"/>
-    <text x="30" y="36" class="pill">CALL 478-266-8020</text>
-  </g>
+  <text x="360" y="115" class="brand">TITAN ARBOR</text>
+  <text x="360" y="215" class="brand">SOLUTIONS</text>
+
+  <text x="360" y="345" class="phone">478-266-8020</text>
+
+  <text x="360" y="455" class="trust">Licensed · Insured · 24/7 Emergency</text>
+
+  <text x="360" y="565" class="tagline">Tree care for metro Atlanta.</text>
 </svg>
 `.trim();
 
-// Build the 1200x630 canvas: solid dark-green background, logo on the
-// left, text SVG on the right.
+// Logo: render from the 2400x2400 master at 420px for the OG card.
 const logoResized = await sharp(logo)
-  .resize(380, 380, { fit: "contain", background: { r: 0, g: 0, b: 0, alpha: 0 } })
+  .resize(420, 420, { fit: "contain", background: { r: 0, g: 0, b: 0, alpha: 0 } })
   .png()
   .toBuffer();
 
+// Compose 1200x630: solid dark-green bg (no overlay → no banding),
+// logo on the left, text block fills the right.
 await sharp({
   create: {
     width: 1200,
@@ -96,20 +98,15 @@ await sharp({
   },
 })
   .composite([
-    // Subtle vignette via a darker green rectangle on the right side
-    {
-      input: Buffer.from(
-        `<svg width="1200" height="630"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="${arborGreenDark}" stop-opacity="0.55"/><stop offset="1" stop-color="${arborGreenDark}" stop-opacity="0"/></linearGradient></defs><rect width="1200" height="630" fill="url(#g)"/></svg>`,
-      ),
-      top: 0,
-      left: 0,
-    },
-    // Logo on the left
-    { input: logoResized, top: 125, left: 60 },
-    // Text block on the right
-    { input: Buffer.from(svgText), top: 0, left: 460 },
+    // Logo on the left, vertically centered
+    { input: logoResized, top: 105, left: 40 },
+    // Text block: starts near top, ends near bottom, fills full height
+    { input: Buffer.from(svgText), top: 0, left: 480 },
   ])
-  .jpeg({ quality: 85 })
+  // High-quality JPEG with no chroma subsampling. The previous
+  // banding came from the gradient overlay; with that removed and
+  // quality bumped to 95, edges stay crisp without artifacts.
+  .jpeg({ quality: 95, chromaSubsampling: "4:4:4", mozjpeg: true })
   .toFile(join(publicDir, "og-image.jpg"));
 
 console.log("✓ All assets generated in public/");

@@ -4,7 +4,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import CTA from "../components/CTA.astro";
 import { site } from "../lib/site";
 import aboutHero from "../assets/images/about.jpg";
-import aboutInField from "../assets/images/about-2.jpg";
 import logoImage from "../assets/logo.png";
 
 const credentials = [
@@ -29,14 +28,29 @@ const credentials = [
     />
     <div class="absolute inset-0 bg-gradient-to-br from-arbor-900/90 via-arbor-800/80 to-arbor-900/90" aria-hidden="true"></div>
 
-    <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
-      <p class="text-sm uppercase tracking-widest text-arbor-100 mb-3">About</p>
-      <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight drop-shadow-lg">
-        Built around one principle: do it right.
-      </h1>
-      <p class="mt-6 text-lg sm:text-xl text-arbor-100 max-w-2xl">
-        Titan Arbor Solutions is a small, locally owned tree care company serving metro Atlanta — built by people who actually do the work.
-      </p>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24 grid lg:grid-cols-5 gap-10 lg:gap-12 items-center">
+      <div class="lg:col-span-3">
+        <p class="text-sm uppercase tracking-widest text-arbor-100 mb-3">About</p>
+        <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight drop-shadow-lg">
+          Built around one principle: do it right.
+        </h1>
+        <p class="mt-6 text-lg sm:text-xl text-arbor-100 max-w-2xl">
+          Titan Arbor Solutions is a small, locally owned tree care company serving metro Atlanta — built by people who actually do the work.
+        </p>
+      </div>
+
+      <div class="lg:col-span-2 flex justify-center lg:justify-end">
+        <div class="relative">
+          <div class="absolute inset-0 rounded-full bg-cream/10 blur-2xl scale-110" aria-hidden="true"></div>
+          <Image
+            src={logoImage}
+            alt="Titan Arbor Solutions logo"
+            widths={[256, 384, 512]}
+            sizes="(min-width: 1024px) 320px, (min-width: 640px) 280px, 224px"
+            class="relative w-56 sm:w-72 lg:w-80 h-56 sm:h-72 lg:h-80 rounded-full object-cover ring-8 ring-cream/20 shadow-2xl"
+          />
+        </div>
+      </div>
     </div>
   </section>
 
@@ -61,54 +75,6 @@ const credentials = [
       <h2>Working toward ISA Certified Arborist</h2>
       <p>
         Diego is actively studying for the <strong>ISA Certified Arborist</strong> exam, the industry's recognized credential. He's working through the certification book now and expects to test within the next few months. Until then, "ISA Certified Arborist" is something we aspire to, not something we claim. We'll update this page the day the cert is in hand.
-      </p>
-    </div>
-  </section>
-
-  <section class="relative overflow-hidden">
-    <Image
-      src={aboutInField}
-      alt=""
-      widths={[640, 1024, 1600]}
-      sizes="100vw"
-      class="absolute inset-0 w-full h-full object-cover"
-      loading="lazy"
-    />
-    <div class="absolute inset-0 bg-gradient-to-r from-arbor-900/90 via-arbor-800/70 to-transparent" aria-hidden="true"></div>
-    <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28">
-      <div class="max-w-xl text-cream">
-        <p class="text-sm uppercase tracking-widest text-arbor-100 mb-3">In the field</p>
-        <h2 class="text-3xl sm:text-4xl font-bold tracking-tight drop-shadow-lg">
-          Show up. Do it right. Clean up after.
-        </h2>
-        <p class="mt-4 text-lg text-arbor-100 leading-relaxed">
-          That's the whole philosophy. No upsells, no surprise fees, no half-finished cleanups. Just tree work the way it's supposed to be done.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Brand identity panel: lets the upscaled logo breathe at a large display size -->
-  <section class="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 bg-arbor-100/40">
-    <div class="max-w-2xl mx-auto text-center">
-      <div class="relative inline-block">
-        <div class="absolute inset-0 rounded-full bg-arbor-800/5 blur-2xl scale-110" aria-hidden="true"></div>
-        <Image
-          src={logoImage}
-          alt="Titan Arbor Solutions logo"
-          widths={[320, 480, 640]}
-          sizes="(min-width: 768px) 384px, (min-width: 640px) 320px, 256px"
-          class="relative w-64 sm:w-80 md:w-96 h-64 sm:h-80 md:h-96 mx-auto rounded-full object-cover ring-8 ring-cream shadow-2xl"
-        />
-      </div>
-      <h2 class="mt-12 text-3xl sm:text-4xl md:text-5xl font-bold text-arbor-900 tracking-tight">
-        {site.name}
-      </h2>
-      <p class="mt-4 text-sm uppercase tracking-widest text-arbor-800 font-semibold">
-        Owned &amp; operated by {site.owner.name}
-      </p>
-      <p class="mt-2 text-sm text-arbor-900/60">
-        {site.legal.city}, {site.legal.stateAbbr} &middot; Licensed &amp; insured
       </p>
     </div>
   </section>

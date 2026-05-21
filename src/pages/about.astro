@@ -5,6 +5,7 @@ import CTA from "../components/CTA.astro";
 import { site } from "../lib/site";
 import aboutHero from "../assets/images/about.jpg";
 import aboutInField from "../assets/images/about-2.jpg";
+import logoImage from "../assets/logo.png";
 
 const credentials = [
   { title: "Georgia LLC", body: "Registered limited liability company in the state of Georgia." },
@@ -84,6 +85,31 @@ const credentials = [
           That's the whole philosophy. No upsells, no surprise fees, no half-finished cleanups. Just tree work the way it's supposed to be done.
         </p>
       </div>
+    </div>
+  </section>
+
+  <!-- Brand identity panel: lets the upscaled logo breathe at a large display size -->
+  <section class="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 bg-arbor-100/40">
+    <div class="max-w-2xl mx-auto text-center">
+      <div class="relative inline-block">
+        <div class="absolute inset-0 rounded-full bg-arbor-800/5 blur-2xl scale-110" aria-hidden="true"></div>
+        <Image
+          src={logoImage}
+          alt="Titan Arbor Solutions logo"
+          widths={[320, 480, 640]}
+          sizes="(min-width: 768px) 384px, (min-width: 640px) 320px, 256px"
+          class="relative w-64 sm:w-80 md:w-96 h-64 sm:h-80 md:h-96 mx-auto rounded-full object-cover ring-8 ring-cream shadow-2xl"
+        />
+      </div>
+      <h2 class="mt-12 text-3xl sm:text-4xl md:text-5xl font-bold text-arbor-900 tracking-tight">
+        {site.name}
+      </h2>
+      <p class="mt-4 text-sm uppercase tracking-widest text-arbor-800 font-semibold">
+        Owned &amp; operated by {site.owner.name}
+      </p>
+      <p class="mt-2 text-sm text-arbor-900/60">
+        {site.legal.city}, {site.legal.stateAbbr} &middot; Licensed &amp; insured
+      </p>
     </div>
   </section>
 

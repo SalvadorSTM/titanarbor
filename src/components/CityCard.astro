@@ -1,5 +1,5 @@
 ---
-import { Image } from "astro:assets";
+import { Picture } from "astro:assets";
 
 interface Props {
   name: string;
@@ -24,12 +24,14 @@ const img = cityImages[`../assets/images/cities/${slug}.jpg`]?.default;
 >
   <div class="relative aspect-[16/10] overflow-hidden bg-arbor-100">
     {img && (
-      <Image
+      <Picture
         src={img}
         alt=""
-        widths={[400, 800, 1200]}
-        sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+        widths={[320, 480, 640]}
+        sizes="(min-width: 1024px) 400px, (min-width: 640px) 50vw, 100vw"
+        formats={["avif", "webp"]}
         loading="lazy"
+        pictureAttributes={{ class: "absolute inset-0 w-full h-full" }}
         class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
       />
     )}

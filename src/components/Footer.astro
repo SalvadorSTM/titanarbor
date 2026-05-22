@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 import { site, services, serviceAreas, telHref, mailHref } from "../lib/site";
 import logoImage from "../assets/logo.png";
+import redRoofingLogo from "../assets/images/partners/red-roofing-logo.jpg";
 const year = new Date().getFullYear();
 ---
 
@@ -95,18 +96,24 @@ const year = new Date().getFullYear();
   </div>
 
   <div class="border-t border-arbor-100/10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row items-center justify-center gap-x-3 gap-y-1 text-xs text-arbor-100/80 text-center">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-center gap-x-4 gap-y-3 text-xs text-arbor-100/80 text-center">
       <span class="text-cream font-semibold uppercase tracking-wider">Roofing partner</span>
-      <span class="hidden sm:inline text-arbor-100/40">·</span>
       <a
         href="https://redroofing.org/"
         target="_blank"
         rel="noopener"
-        class="text-arbor-100 hover:text-cream underline-offset-4 hover:underline"
+        aria-label="Red Roofing & Gutters (opens in new tab)"
+        class="inline-flex items-center justify-center bg-white rounded-md px-3 py-1.5 hover:opacity-90 transition"
       >
-        Red Roofing &amp; Gutters
+        <Image
+          src={redRoofingLogo}
+          alt="Red Roofing & Gutters"
+          widths={[160, 240]}
+          sizes="120px"
+          loading="lazy"
+          class="h-8 w-auto object-contain"
+        />
       </a>
-      <span class="hidden sm:inline text-arbor-100/40">·</span>
       <span>Tree through a roof? They handle the repair.</span>
     </div>
   </div>

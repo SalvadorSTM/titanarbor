@@ -28,3 +28,7 @@ A tree on the house, the car, the fence, the driveway, or hung up dangerously in
 ## Insurance claims
 
 Most storm-related tree damage that hits your home, garage, fence, or vehicle is covered by homeowners' insurance. We can document the damage, provide an itemized estimate suitable for your adjuster, and coordinate timing with the claim. Diego will walk you through it.
+
+## Roof damage too?
+
+When a tree comes through a roof, you need two crews: tree people and roof people. Our official roofing partner is **[Red Roofing & Gutters](https://redroofing.org/)** out of Madison, GA — they cover metro Atlanta, run a 24/7 line at **770-404-ROOF (7663)**, and specialize in homeowners' insurance claims. We coordinate timing so the repair starts the moment we've made the site safe. Call us first; we'll loop them in.

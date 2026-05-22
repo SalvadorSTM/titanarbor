@@ -9,7 +9,7 @@ heroEyebrow: Emergency
 
 ## When the wind brings one down
 
-A tree on the house, the car, the fence, the driveway, or hung up dangerously in another tree — these don't wait for business hours. Diego is on call 24/7 for storm work. Call **478-266-8020** any hour.
+A tree on the house, the car, the fence, the driveway, or hung up dangerously in another tree — these don't wait for business hours. We're on call 24/7 for storm work. Call **478-266-8020** any hour.
 
 ## What we prioritize, in this order
 
@@ -27,4 +27,4 @@ A tree on the house, the car, the fence, the driveway, or hung up dangerously in
 
 ## Insurance claims
 
-Most storm-related tree damage that hits your home, garage, fence, or vehicle is covered by homeowners' insurance. We can document the damage, provide an itemized estimate suitable for your adjuster, and coordinate timing with the claim. Diego will walk you through it.
+Most storm-related tree damage that hits your home, garage, fence, or vehicle is covered by homeowners' insurance. We can document the damage, provide an itemized estimate suitable for your adjuster, and coordinate timing with the claim. We'll walk you through it.

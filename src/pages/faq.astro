@@ -11,7 +11,7 @@ const groups: FaqGroup[] = [
     items: [
       {
         q: "Are estimates really free?",
-        a: "Yes. Diego comes out, looks at the tree, walks the site, and gives you a written price. No charge for the visit, no obligation, no pressure if you decide not to hire us.",
+        a: "Yes. We come out, look at the tree, walk the site, and give you a written price. No charge for the visit, no obligation, no pressure if you decide not to hire us.",
       },
       {
         q: "Why does the price vary so much between trees?",
@@ -32,7 +32,7 @@ const groups: FaqGroup[] = [
       },
       {
         q: "What about emergencies — what if a tree just fell on my house?",
-        a: "Call 478-266-8020 any time, day or night. Diego is on call for storm work 24/7. First priority is life safety, then stabilizing the damage, then full cleanup. Don't try to cut anything yourself if it's under load — call us first.",
+        a: "Call 478-266-8020 any time, day or night. We're on call for storm work 24/7. First priority is life safety, then stabilizing the damage, then full cleanup. Don't try to cut anything yourself if it's under load — call us first.",
       },
       {
         q: "Do you handle trees on or near power lines?",
@@ -48,8 +48,8 @@ const groups: FaqGroup[] = [
         a: "Yes — general liability and workers' compensation, on every job. GL covers your property if something gets damaged during the work. Workers' comp covers everyone working on your property, so you're not exposed to a personal injury claim if someone gets hurt — which matters more in tree care than almost any other trade. Certificate of insurance available on request before any job.",
       },
       {
-        q: "Will Diego be on the job, or do you send someone else?",
-        a: "Diego is the lead arborist on every job. He's the person who quotes it, runs it, and follows up. There's no sales rep, no subcontracted crew you've never met.",
+        q: "Will the person who quotes the job actually do the work?",
+        a: "Yes. Our lead arborist runs every job — the same person who quotes it, runs it, and follows up. There's no sales rep, no subcontracted crew you've never met.",
       },
       {
         q: "Do you 'top' trees?",
@@ -106,7 +106,7 @@ const faqSchema = site.published
         Honest answers.
       </h1>
       <p class="mt-6 text-lg sm:text-xl text-arbor-100 max-w-2xl">
-        The questions Diego gets most often. If yours isn't here, just call <a href={telHref(site.phonePrimary)} class="underline underline-offset-4 hover:text-cream">{site.phonePrimary}</a>.
+        The questions we get most often. If yours isn't here, just call <a href={telHref(site.phonePrimary)} class="underline underline-offset-4 hover:text-cream">{site.phonePrimary}</a>.
       </p>
     </div>
   </section>
@@ -137,7 +137,7 @@ const faqSchema = site.published
     </div>
   </section>
 
-  <CTA variant="compact" heading="Still have a question?" body="Diego will tell you straight up, no sales pitch." />
+  <CTA variant="compact" heading="Still have a question?" body="We'll tell you straight up, no sales pitch." />
 
   {faqSchema && (
     <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />

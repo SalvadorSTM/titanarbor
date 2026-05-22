@@ -24,7 +24,7 @@ We handle the full job — assessment, takedown, cleanup, and haul-off — so yo
 
 ## How we work
 
-**1. Free on-site assessment.** Diego comes out, looks at the tree, considers the surroundings, and gives you an honest price. If a removal isn't necessary, we'll tell you.
+**1. Free on-site assessment.** We come out, look at the tree, consider the surroundings, and give you an honest price. If a removal isn't necessary, we'll tell you.
 
 **2. Safe takedown.** Depending on the tree and the site, that's either a straight fell, a sectional dismantle from the top down, or a rigged removal with ropes when there's no room to drop. Power lines, structures, and landscaping are factored in.
 

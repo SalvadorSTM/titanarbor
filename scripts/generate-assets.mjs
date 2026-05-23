@@ -17,7 +17,9 @@ const publicDir = join(root, "public");
 // references (which don't go through Astro).
 const logo = join(root, "src", "assets", "logo.png");
 
-const arborGreen = { r: 31, g: 77, b: 43 };
+// Sampled directly from src/assets/logo.png's solid background so the
+// logo blends into the OG card with no visible square outline.
+const arborGreen = { r: 29, g: 60, b: 43 };
 const arborGreenDark = "#143119";
 const cream = "#f7f5ee";
 

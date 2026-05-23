@@ -29,8 +29,11 @@ const services = (await getCollection("services")).sort(
 
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28 lg:py-32 w-full">
       <div class="max-w-3xl">
-        <p class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cream/15 backdrop-blur text-cream text-xs uppercase tracking-widest font-medium mb-6">
-          <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+        <p class="inline-flex items-center gap-3 px-5 py-2 rounded-full bg-cream/15 backdrop-blur text-cream text-sm uppercase tracking-widest font-medium mb-6">
+          <span class="relative flex w-3 h-3">
+            <span class="absolute inset-0 rounded-full bg-green-400 opacity-75 animate-ping"></span>
+            <span class="relative w-3 h-3 rounded-full bg-green-400 shadow-[0_0_12px_3px_rgba(74,222,128,0.85)]"></span>
+          </span>
           24-hour emergency response
         </p>
         <h1 class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.05] drop-shadow-lg">

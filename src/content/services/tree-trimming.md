@@ -3,7 +3,7 @@ title: Tree Trimming
 shortTitle: Trimming
 summary: Selective branch removal to improve safety, clearance, and the natural shape of your trees.
 icon: scissors
-order: 2
+order: 3
 heroEyebrow: Tree care
 ---
 

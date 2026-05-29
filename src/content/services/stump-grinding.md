@@ -3,7 +3,7 @@ title: Stump Grinding
 shortTitle: Stumps
 summary: Complete stump removal so you can replant, landscape, or simply reclaim the space.
 icon: grinder
-order: 4
+order: 5
 heroEyebrow: After the tree
 ---
 

@@ -113,6 +113,7 @@ const serviceSchema = site.published
             icon={s.data.icon}
             href={`/services/${s.id}/`}
             slug={s.id}
+            liveIndicator={s.id === "emergency-storm-response"}
           />
         ))}
       </div>

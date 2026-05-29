@@ -3,7 +3,7 @@ title: Emergency Storm Response
 shortTitle: Storm
 summary: 24-hour response for storm-damaged, fallen, or hung-up trees. Call anytime.
 icon: lightning
-order: 7
+order: 2
 heroEyebrow: Emergency
 ---
 

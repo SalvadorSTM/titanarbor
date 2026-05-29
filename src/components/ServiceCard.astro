@@ -8,9 +8,10 @@ interface Props {
   icon: string;
   href: string;
   slug?: string;
+  liveIndicator?: boolean;
 }
 
-const { title, summary, icon, href, slug } = Astro.props;
+const { title, summary, icon, href, slug, liveIndicator = false } = Astro.props;
 
 const serviceImages = import.meta.glob<{ default: ImageMetadata }>(
   "../assets/images/services/*.jpg",
@@ -50,7 +51,15 @@ const img = slug
       </div>
     )}
     <h3 class="text-lg font-semibold text-arbor-900 mb-2">{title}</h3>
-    <p class="text-sm text-arbor-900/70 leading-relaxed flex-1">{summary}</p>
+    <p class="text-sm text-arbor-900/70 leading-relaxed flex-1">
+      {liveIndicator && (
+        <span class="relative inline-flex w-2 h-2 mr-2 align-middle" aria-label="Live 24-hour line">
+          <span class="absolute inset-0 rounded-full bg-green-500 opacity-75 animate-ping"></span>
+          <span class="relative inline-block w-2 h-2 rounded-full bg-green-500 shadow-[0_0_6px_2px_rgba(34,197,94,0.7)]"></span>
+        </span>
+      )}
+      {summary}
+    </p>
     <span class="inline-flex items-center gap-1 mt-4 text-sm font-medium text-arbor-800 group-hover:gap-2 transition-all">
       Learn more
       <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">

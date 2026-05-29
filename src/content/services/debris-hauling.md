@@ -3,7 +3,7 @@ title: Debris Hauling
 shortTitle: Hauling
 summary: We clean up after every job — branches, logs, and brush hauled off so your yard is left ready.
 icon: truck
-order: 5
+order: 6
 heroEyebrow: After the work
 ---
 

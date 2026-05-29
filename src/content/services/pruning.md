@@ -3,7 +3,7 @@ title: Pruning
 shortTitle: Pruning
 summary: Targeted cuts that promote tree health, structure, and long-term growth.
 icon: leaf
-order: 3
+order: 4
 heroEyebrow: Tree care
 ---
 

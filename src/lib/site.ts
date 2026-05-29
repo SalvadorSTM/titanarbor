@@ -59,13 +59,22 @@ export const services: Service[] = [
     order: 1,
   },
   {
+    slug: "emergency-storm-response",
+    title: "Emergency Storm Response",
+    shortTitle: "Storm",
+    summary:
+      "24-hour response for storm-damaged, fallen, or hung-up trees. Call anytime.",
+    icon: "lightning",
+    order: 2,
+  },
+  {
     slug: "tree-trimming",
     title: "Tree Trimming",
     shortTitle: "Trimming",
     summary:
       "Selective branch removal to improve safety, clearance, and the natural shape of your trees.",
     icon: "scissors",
-    order: 2,
+    order: 3,
   },
   {
     slug: "pruning",
@@ -74,7 +83,7 @@ export const services: Service[] = [
     summary:
       "Targeted cuts that promote tree health, structure, and long-term growth.",
     icon: "leaf",
-    order: 3,
+    order: 4,
   },
   {
     slug: "stump-grinding",
@@ -83,7 +92,7 @@ export const services: Service[] = [
     summary:
       "Complete stump removal so you can replant, landscape, or simply reclaim the space.",
     icon: "grinder",
-    order: 4,
+    order: 5,
   },
   {
     slug: "debris-hauling",
@@ -92,7 +101,7 @@ export const services: Service[] = [
     summary:
       "We clean up after every job — branches, logs, and brush hauled off so your yard is left ready.",
     icon: "truck",
-    order: 5,
+    order: 6,
   },
   {
     slug: "disease-pest-diagnosis",
@@ -101,15 +110,6 @@ export const services: Service[] = [
     summary:
       "We identify what's making your tree sick and recommend a treatment path — or removal if it's too late.",
     icon: "magnifier",
-    order: 6,
-  },
-  {
-    slug: "emergency-storm-response",
-    title: "Emergency Storm Response",
-    shortTitle: "Storm",
-    summary:
-      "24-hour response for storm-damaged, fallen, or hung-up trees. Call anytime.",
-    icon: "lightning",
     order: 7,
   },
 ];

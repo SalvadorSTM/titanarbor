@@ -3,7 +3,7 @@ title: Disease & Pest Diagnosis
 shortTitle: Diagnosis
 summary: We identify what's making your tree sick and recommend a treatment path — or removal if it's too late.
 icon: magnifier
-order: 6
+order: 7
 heroEyebrow: Tree health
 ---
 

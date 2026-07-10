@@ -3,7 +3,39 @@ import { Image } from "astro:assets";
 import { site, services, serviceAreas, telHref, mailHref } from "../lib/site";
 import logoImage from "../assets/logo.png";
 import redRoofingLogo from "../assets/images/partners/red-roofing-logo.jpg";
+import mrmLogo from "../assets/images/partners/mrm-logo.png";
+import beePimpnLogo from "../assets/images/partners/bee-pimpn-logo.png";
 const year = new Date().getFullYear();
+
+const partners = [
+  {
+    type: "Roofing",
+    href: "https://redroofing.org/",
+    external: true,
+    tagline: "Tree through a roof? They handle the repair.",
+    logo: redRoofingLogo,
+    logoAlt: "Red Roofing & Gutters",
+    logoWidths: [160, 240],
+  },
+  {
+    type: "Landscape",
+    href: "tel:4047517508",
+    external: false,
+    tagline: "Landscape and hardscape after the tree work.",
+    logo: mrmLogo,
+    logoAlt: "MRM Landscape",
+    logoWidths: [120, 200],
+  },
+  {
+    type: "Beekeeping",
+    href: "https://beepimpn.com",
+    external: true,
+    tagline: "Live honey bee removal before we touch the tree.",
+    logo: beePimpnLogo,
+    logoAlt: "Bee Pimpn",
+    logoWidths: [120, 200, 236],
+  },
+];
 ---
 
 <footer class="bg-arbor-900 text-arbor-100">
@@ -99,25 +131,25 @@ const year = new Date().getFullYear();
   </div>
 
   <div class="border-t border-arbor-100/10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-center gap-x-4 gap-y-3 text-xs text-arbor-100/80 text-center">
-      <span class="text-cream font-semibold uppercase tracking-wider">Roofing partner</span>
-      <a
-        href="https://redroofing.org/"
-        target="_blank"
-        rel="noopener"
-        aria-label="Red Roofing & Gutters (opens in new tab)"
-        class="inline-flex items-center justify-center bg-white rounded-md px-3 py-1.5 hover:opacity-90 transition"
-      >
-        <Image
-          src={redRoofingLogo}
-          alt="Red Roofing & Gutters"
-          widths={[160, 240]}
-          sizes="120px"
-          loading="lazy"
-          class="h-8 w-auto object-contain"
-        />
-      </a>
-      <span>Tree through a roof? They handle the repair.</span>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <p class="text-cream font-semibold uppercase tracking-widest text-xs text-center mb-5">Trusted partners</p>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        {partners.map((p) => (
+          <a
+            href={p.href}
+            target={p.external ? "_blank" : undefined}
+            rel={p.external ? "noopener" : undefined}
+            aria-label={p.logoAlt}
+            class="bg-arbor-100/5 hover:bg-arbor-100/10 border border-arbor-100/10 rounded-xl p-4 flex flex-col items-center gap-2 text-center transition"
+          >
+            <span class="text-arbor-100/70 text-[10px] uppercase tracking-widest font-semibold">{p.type}</span>
+            <span class="inline-flex items-center justify-center bg-white rounded-md px-3 py-1.5">
+              <Image src={p.logo} alt={p.logoAlt} widths={p.logoWidths} sizes="100px" loading="lazy" class="h-8 w-auto object-contain" />
+            </span>
+            <p class="text-arbor-100/80 text-xs leading-relaxed">{p.tagline}</p>
+          </a>
+        ))}
+      </div>
     </div>
   </div>
 

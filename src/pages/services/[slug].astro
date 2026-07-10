@@ -6,6 +6,8 @@ import ServiceIcon from "../../components/ServiceIcon.astro";
 import ServiceCard from "../../components/ServiceCard.astro";
 import CTA from "../../components/CTA.astro";
 import RoofingPartner from "../../components/RoofingPartner.astro";
+import LandscapePartner from "../../components/LandscapePartner.astro";
+import BeePartner from "../../components/BeePartner.astro";
 import { site, serviceAreas } from "../../lib/site";
 
 export async function getStaticPaths() {
@@ -99,6 +101,8 @@ const serviceSchema = site.published
   </article>
 
   {service.id === "emergency-storm-response" && <RoofingPartner />}
+  {service.id === "stump-grinding" && <LandscapePartner />}
+  {service.id === "tree-removal" && <BeePartner />}
 
   <CTA variant="compact" heading={`Ready to schedule ${service.data.shortTitle.toLowerCase()}?`} />
 

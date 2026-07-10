@@ -1,0 +1,70 @@
+---
+import { Image } from "astro:assets";
+import beePhoto from "../assets/images/partners/bee-pimpn-photo.jpg";
+
+const contact = {
+  business: "Bee Pimpn",
+  phone: "404-644-0900",
+  email: "Beepimpn@gmail.com",
+  site: "https://beepimpn.com",
+  siteLabel: "beepimpn.com",
+};
+
+const telHref = `tel:${contact.phone.replace(/\D/g, "")}`;
+const mailHref = `mailto:${contact.email}`;
+---
+
+<section class="bg-cream py-12 sm:py-16 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-3xl mx-auto">
+    <p class="text-sm uppercase tracking-widest text-arbor-800 mb-3 font-semibold text-center">Our beekeeping partner</p>
+    <h2 class="text-2xl sm:text-3xl font-bold text-arbor-900 tracking-tight text-center mb-8">
+      Bees in the tree? They handle the relocation.
+    </h2>
+
+    <div class="bg-white border border-arbor-800/15 rounded-2xl overflow-hidden shadow-sm">
+      <a href={contact.site} target="_blank" rel="noopener" aria-label={`${contact.business} — opens in new tab`} class="block bg-white">
+        <Image
+          src={beePhoto}
+          alt={`${contact.business} — live honey bee removal, honey, wax, and pollination services`}
+          widths={[640, 960, 1280]}
+          sizes="(min-width: 768px) 720px, 100vw"
+          loading="lazy"
+          class="w-full h-auto object-contain"
+        />
+      </a>
+
+      <div class="p-6 sm:p-8 border-t border-arbor-800/10">
+        <p class="text-arbor-900/80 leading-relaxed mb-6">
+          A live honey bee colony in the tree changes the job. Killing them isn't the answer — bees are
+          in trouble everywhere, and healthy hives are worth saving. <strong class="text-arbor-900">Bee Pimpn</strong> is
+          our official beekeeping partner: live removals, honey, wax, and pollination services out of metro Atlanta.
+          Call us first; we'll bring them in before we touch the tree.
+        </p>
+
+        <div class="flex flex-col sm:flex-row sm:flex-wrap gap-3 sm:gap-4 text-sm">
+          <a href={telHref} class="inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-arbor-800 text-cream rounded-full font-semibold hover:bg-arbor-700 transition">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z"/>
+            </svg>
+            Call {contact.business} · {contact.phone}
+          </a>
+          <a href={mailHref} class="inline-flex items-center justify-center gap-2 px-4 py-2.5 border-2 border-arbor-800/20 text-arbor-900 rounded-full font-semibold hover:border-arbor-800/40 hover:bg-arbor-800/5 transition break-all">
+            <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+            {contact.email}
+          </a>
+          <a href={contact.site} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 px-4 py-2.5 border-2 border-arbor-800/20 text-arbor-900 rounded-full font-semibold hover:border-arbor-800/40 hover:bg-arbor-800/5 transition">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+              <polyline points="15 3 21 3 21 9"/>
+              <line x1="10" y1="14" x2="21" y2="3"/>
+            </svg>
+            {contact.siteLabel}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
